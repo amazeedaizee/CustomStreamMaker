@@ -25,6 +25,8 @@ This program also supports custom backgrounds and sprites as well!
 
 For extracting the assets from the game.
 
+Files from the Resources folders are taken from https://github.com/AssetRipper/Tpk.
+
 - [Fmod5Sharp](https://github.com/SamboyCoding/Fmod5Sharp) <br/> 
 - [NAudio](https://github.com/naudio/NAudio) <br/>
 - [NVorbis](https://github.com/NVorbis/NVorbis) <br/>
@@ -38,7 +40,9 @@ For creating image previews from the game, and from any custom images/sprites up
 
 ## Licensing
 
-**AssetExtractor.cs**, and **CustomAssetExtractor.cs** are licensed under the MIT License. You can find these licenses in their respective files. The rest of the code in this repository is All Rights Reserved (c) 2023 amazeedaizee.
+**AssetExtractor.cs**, and **CustomAssetExtractor.cs** are licensed under the MIT License. You can find these licenses in their respective files. 
+
+The rest of the code in this repository is All Rights Reserved (c) 2023 amazeedaizee.
 
 ## Other 
 
