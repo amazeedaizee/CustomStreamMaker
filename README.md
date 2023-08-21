@@ -27,12 +27,16 @@ For extracting the assets from the game.
 
 Files from the Resources folders are taken from https://github.com/AssetRipper/Tpk.
 
+-----
+
 - [Fmod5Sharp](https://github.com/SamboyCoding/Fmod5Sharp) <br/> 
 - [NAudio](https://github.com/naudio/NAudio) <br/>
 - [NVorbis](https://github.com/NVorbis/NVorbis) <br/>
 - [OggVorbisEncoder](https://github.com/SteveLillis/.NET-Ogg-Vorbis-Encoder) <br/>
 
 For creating audio previews from the game.
+
+-----
 
 - [ImageSharp](https://github.com/SixLabors/ImageSharp) (Apache 2.0 version since this software is visible-source) <br/>
 
