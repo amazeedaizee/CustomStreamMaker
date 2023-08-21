@@ -4,7 +4,7 @@
 
 Custom Stream Maker is a program that allows you to make your own Needy Streamer Overload streams using audio, animations and more from the game!
 
-There's also a companion game mod for this program, Custom Stream Loader, which allows you to see your custom streams in action on the game itself!
+There's also a companion game mod for this program, [Custom Stream Loader](https://github.com/amazeedaizee/CustomStreamLoader), which allows you to see your custom streams in action on the game itself!
 
 #### Please note: This program does not come with the assets yourself, you need your own copy of Needy Streamer Overload to preview any assets from the game.
 
