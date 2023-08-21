@@ -1,4 +1,35 @@
-﻿using AssetsTools.NET.Extra;
+﻿/* 
+ *   Copyright (c) 2023 amazeedaizee
+ *   
+ *   Permission is hereby granted, free of charge, to any person obtaining a copy of this software (AssetExtractor.cs) and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+ *   
+ *   The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+ *   
+ *   THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ *
+ *   ---------
+ *
+ *   Parts of the code in this file uses: 
+ *   
+ *   the AssetTools.NET Library, 
+ *   the AssetRipper.TextureDecoder Library,
+ *   the Fmod5Sharp Library, 
+ *   the NAudio Library, 
+ *   the NVorbis Library,
+ *   the OggVorbisEncoder Library,
+ *   and the ImageSharp library (Apache 2.0 version since this software is visible-source).
+ *
+ *    Licenses:
+ *    
+ *    https://github.com/nesrak1/AssetsTools.NET/blob/master/LICENSE
+ *    https://github.com/AssetRipper/TextureDecoder/blob/master/LICENSE
+ *    https://github.com/SamboyCoding/Fmod5Sharp/blob/master/LICENSE
+ *    https://github.com/naudio/NAudio/blob/master/license.txt
+ *    https://github.com/SteveLillis/.NET-Ogg-Vorbis-Encoder/blob/master/LICENSE
+ *    https://github.com/SixLabors/ImageSharp/blob/main/LICENSE
+*/
+
+using AssetsTools.NET.Extra;
 using AssetsTools.NET.Texture;
 using Fmod5Sharp;
 using Fmod5Sharp.FmodTypes;
@@ -15,37 +46,6 @@ using System.Linq;
 
 namespace CustomStreamMaker
 {
-    /* 
-     *   Copyright (c) 2023 amazeedaizee
-     *   
-     *   Permission is hereby granted, free of charge, to any person obtaining a copy of this software (AssetExtractor.cs) and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
-     *   
-     *   The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-     *   
-     *   THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-     *
-     *   ---------
-     *
-     *   Parts of the code in this file uses: 
-     *   
-     *   the AssetTools.NET Library, 
-     *   the AssetRipper.TextureDecoder Library,
-     *   the Fmod5Sharp Library, 
-     *   the NAudio Library, 
-     *   the NVorbis Library,
-     *   the OggVorbisEncoder Library,
-     *   and the ImageSharp library (Apache 2.0 version since this software is visible-source).
-     *
-     *    Licenses:
-     *    
-     *    https://github.com/nesrak1/AssetsTools.NET/blob/master/LICENSE
-     *    https://github.com/AssetRipper/TextureDecoder/blob/master/LICENSE
-     *    https://github.com/SamboyCoding/Fmod5Sharp/blob/master/LICENSE
-     *    https://github.com/naudio/NAudio/blob/master/license.txt
-     *    https://github.com/SteveLillis/.NET-Ogg-Vorbis-Encoder/blob/master/LICENSE
-     *    https://github.com/SixLabors/ImageSharp/blob/main/LICENSE
-    */
-
     internal class AssetExtractor
     {
         public static bool SaveToMemory = false;
