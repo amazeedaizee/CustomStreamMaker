@@ -1,6 +1,7 @@
 # Custom Stream Maker
 
-![2023-08-20 (16)](https://github.com/amazeedaizee/CustomStreamMaker/assets/131136866/45bbf8b0-27a8-4892-b079-6e94e300f1fb)
+![2023-08-20 (16)](https://github.com/amazeedaizee/CustomStreamMaker/assets/131136866/76f573b3-7881-4f57-9efc-9ae4649d4277)
+
 
 Custom Stream Maker is a program that allows you to make your own Needy Streamer Overload streams using audio, animations and more from the game!
 
