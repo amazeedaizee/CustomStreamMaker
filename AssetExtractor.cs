@@ -399,7 +399,8 @@ namespace CustomStreamMaker
             string filePath;
             while (spriteIndex < ThatOneLongListOfAnimationsOriginallyInTheGame.list.Length)
             {
-                if (!everyFileName.Contains(ThatOneLongListOfAnimationsOriginallyInTheGame.list[spriteIndex] + ".anim"))
+                var animName = ThatOneLongListOfAnimationsOriginallyInTheGame.list[spriteIndex];
+                if (!everyFileName.Contains(animName + ".anim"))
                 {
                     spriteIndex++;
                     continue;
@@ -408,15 +409,58 @@ namespace CustomStreamMaker
                 {
                     if (spriteIndex >= ThatOneLongListOfAnimationsOriginallyInTheGame.list.Length)
                         break;
-                    if (file.Contains(ThatOneLongListOfAnimationsOriginallyInTheGame.list[spriteIndex] + ".anim"))
+                    if (file.Contains(animName + ".anim"))
                     {
                         filePath = file;
-                        CachedSprites.Add(ThatOneLongListOfAnimationsOriginallyInTheGame.list[spriteIndex], SpriteGetter());
+                        CachedSprites.Add(animName, SpriteGetter());
                         spriteIndex++;
                         continue;
                     }
-
                 }
+            }
+            if (Directory.GetFiles(SpriteDirectory).Length < 352)
+                GetMissingAssetsFromDefault();
+
+            void GetMissingAssetsFromDefault()
+            {
+                string defaultFile = null;
+                foreach (var file in Directory.GetFiles(addressablesPath))
+                {
+                    if (file.Contains("defaultlocalgroup_assets_all"))
+                        defaultFile = file;
+                }
+                var am = new AssetsManager();
+
+                var bunInst = am.LoadBundleFile(defaultFile, false);
+                var assetInst = am.LoadAssetsFileFromBundle(bunInst, 0, true);
+
+                foreach (var texInfo in assetInst.file.GetAssetsOfType((int)AssetClassID.Texture2D))
+                {
+                    var animName = "";
+                    var tex = am.GetBaseField(assetInst, texInfo);
+
+                    var tf = TextureFile.ReadTextureFile(tex);
+                    var texDat = tf.GetTextureData(assetInst);
+                    var dataLocation = tex["m_StreamData"][0].AsInt;
+                    if (dataLocation == 17982288)
+                        animName = "stream_ame_drag_a";
+                    if (dataLocation == 167063456)
+                        animName = "stream_ame_drag_b";
+                    if (dataLocation == 78068800)
+                        animName = "stream_ame_drag_c";
+                    if (dataLocation == 7705732)
+                        animName = "stream_ame_drag_d";
+                    if (dataLocation == 249505492)
+                        animName = "stream_ame_drag_g";
+                    if (animName == "")
+                        continue;
+                    using (var file = File.Create(SpriteDirectory + @"\" + animName))
+                    {
+                        file.Write(texDat, 0, texDat.Length);
+                    }
+                    spriteIndex++;
+                }
+
             }
 
             SixLabors.ImageSharp.Image SpriteGetter()
