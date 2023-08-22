@@ -1,6 +1,7 @@
 # Custom Stream Maker
 
-![2023-08-20 (16)](https://github.com/amazeedaizee/CustomStreamMaker/assets/131136866/45bbf8b0-27a8-4892-b079-6e94e300f1fb)
+![2023-08-20 (16)](https://github.com/amazeedaizee/CustomStreamMaker/assets/131136866/76f573b3-7881-4f57-9efc-9ae4649d4277)
+
 
 Custom Stream Maker is a program that allows you to make your own Needy Streamer Overload streams using audio, animations and more from the game!
 
@@ -27,12 +28,16 @@ For extracting the assets from the game.
 
 Files from the Resources folders are taken from https://github.com/AssetRipper/Tpk.
 
+-----
+
 - [Fmod5Sharp](https://github.com/SamboyCoding/Fmod5Sharp) <br/> 
 - [NAudio](https://github.com/naudio/NAudio) <br/>
 - [NVorbis](https://github.com/NVorbis/NVorbis) <br/>
 - [OggVorbisEncoder](https://github.com/SteveLillis/.NET-Ogg-Vorbis-Encoder) <br/>
 
 For creating audio previews from the game.
+
+-----
 
 - [ImageSharp](https://github.com/SixLabors/ImageSharp) (Apache 2.0 version since this software is visible-source) <br/>
 
