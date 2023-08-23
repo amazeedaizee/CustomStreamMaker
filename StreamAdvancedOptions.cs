@@ -27,8 +27,9 @@ namespace CustomStreamMaker
             CustomDay_Numeric.Enabled = CustomDay_Check.Checked;
             CustomDay_Check.Checked = editor.settings.HasCustomDay;
             CustomDay_Numeric.Value = editor.settings.CustomDay;
-            HasCustomEndScreen_Check.Enabled = HasCustomEndScreen_Check.Checked;
+            HasCustomEndScreen_Check.Enabled = HasEndScreen_Check.Checked;
             HasCustomEndScreen_Check.Checked = editor.settings.HasCustomEndScreen;
+            OpenEndScreenImg_Button.Enabled = HasCustomEndScreen_Check.Checked;
             CustomEndScreen_Text.Enabled = HasCustomEndScreen_Check.Checked;
             if (File.Exists(editor.settings.CustomEndScreenPath))
                 CustomEndScreen_Text.Text = editor.settings.CustomEndScreenPath;
@@ -77,7 +78,9 @@ namespace CustomStreamMaker
         private void HasEndScreen_Check_CheckedChanged(object sender, EventArgs e)
         {
             editor.settings.hasEndScreen = HasEndScreen_Check.Checked;
-            HasCustomEndScreen_Check.Enabled = HasCustomEndScreen_Check.Checked;
+            if (!HasEndScreen_Check.Checked)
+                HasCustomEndScreen_Check.Checked = false;
+            HasCustomEndScreen_Check.Enabled = HasEndScreen_Check.Checked;
         }
 
         private void CustomDay_Check_CheckedChanged(object sender, EventArgs e)
@@ -95,6 +98,7 @@ namespace CustomStreamMaker
         {
             editor.settings.HasCustomEndScreen = HasCustomEndScreen_Check.Checked;
             CustomEndScreen_Text.Enabled = HasCustomEndScreen_Check.Checked;
+            OpenEndScreenImg_Button.Enabled = HasCustomEndScreen_Check.Checked;
         }
 
         private void ValidateCustomEndScreen()
