@@ -253,8 +253,8 @@ namespace CustomStreamMaker
         private void SyncExportedSettings()
         {
             StreamTItle_Text.Text = settings.StringTitle;
-            StartingAnimation_List.SelectedItem = settings.StartingAnimation;
-            StartingMusic_List.SelectedItem = settings.StartingMusic.ToString();
+            StartingAnimation_List.Text = settings.StartingAnimation;
+            StartingMusic_List.Text = settings.StartingMusic.ToString();
             if (settings.StartingBackground == StreamBackground.None)
                 StartingBackground_List.SelectedIndex = 0;
             else StartingBackground_List.SelectedIndex = (int)settings.StartingBackground;
