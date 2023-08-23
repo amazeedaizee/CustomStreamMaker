@@ -721,8 +721,9 @@ namespace CustomStreamMaker
                 index = StreamPlayingList.SelectedRows[0].Index;
                 AddToUndoHistory(EditType.Edit, index, settings.PlayingList[index], index, playObj);
                 InsertToPlayingListView(index, playObj);
+                if (index == settings.PlayingList.Count - 1)
+                    StreamPlayingList.ClearSelection();
             }
-
             else
             {
                 AddToUndoHistory(EditType.Add, settings.PlayingList.Count, playObj);
