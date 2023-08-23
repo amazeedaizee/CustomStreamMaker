@@ -41,16 +41,20 @@
             this.RemoveBorders_Check = new System.Windows.Forms.CheckBox();
             this.InvertColors_Check = new System.Windows.Forms.CheckBox();
             this.StreamEnd_Group = new System.Windows.Forms.GroupBox();
-            this.HasEndScreen_Check = new System.Windows.Forms.CheckBox();
-            this.HasCustomEndScreen_Check = new System.Windows.Forms.CheckBox();
-            this.CustomEndScreen_Text = new System.Windows.Forms.TextBox();
             this.OpenEndScreenImg_Button = new System.Windows.Forms.Button();
+            this.CustomEndScreen_Text = new System.Windows.Forms.TextBox();
+            this.HasCustomEndScreen_Check = new System.Windows.Forms.CheckBox();
+            this.HasEndScreen_Check = new System.Windows.Forms.CheckBox();
+            this.Chair_Group = new System.Windows.Forms.GroupBox();
+            this.GameChair_Checked = new System.Windows.Forms.CheckBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.StreamIntro_Group.SuspendLayout();
             this.StreamInterface_Group.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.CustomDay_Numeric)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.CustomFollowers_Numeric)).BeginInit();
             this.GameBorders_Group.SuspendLayout();
             this.StreamEnd_Group.SuspendLayout();
+            this.Chair_Group.SuspendLayout();
             this.SuspendLayout();
             // 
             // StreamIntro_Group
@@ -161,7 +165,7 @@
             // 
             this.GameBorders_Group.Controls.Add(this.RemoveBorders_Check);
             this.GameBorders_Group.Controls.Add(this.InvertColors_Check);
-            this.GameBorders_Group.Location = new System.Drawing.Point(13, 212);
+            this.GameBorders_Group.Location = new System.Drawing.Point(13, 282);
             this.GameBorders_Group.Name = "GameBorders_Group";
             this.GameBorders_Group.Size = new System.Drawing.Size(305, 86);
             this.GameBorders_Group.TabIndex = 0;
@@ -196,23 +200,32 @@
             this.StreamEnd_Group.Controls.Add(this.CustomEndScreen_Text);
             this.StreamEnd_Group.Controls.Add(this.HasCustomEndScreen_Check);
             this.StreamEnd_Group.Controls.Add(this.HasEndScreen_Check);
-            this.StreamEnd_Group.Location = new System.Drawing.Point(12, 314);
+            this.StreamEnd_Group.Location = new System.Drawing.Point(13, 379);
             this.StreamEnd_Group.Name = "StreamEnd_Group";
             this.StreamEnd_Group.Size = new System.Drawing.Size(305, 106);
             this.StreamEnd_Group.TabIndex = 0;
             this.StreamEnd_Group.TabStop = false;
             this.StreamEnd_Group.Text = "Stream End";
             // 
-            // HasEndScreen_Check
+            // OpenEndScreenImg_Button
             // 
-            this.HasEndScreen_Check.AutoSize = true;
-            this.HasEndScreen_Check.Location = new System.Drawing.Point(10, 22);
-            this.HasEndScreen_Check.Name = "HasEndScreen_Check";
-            this.HasEndScreen_Check.Size = new System.Drawing.Size(104, 17);
-            this.HasEndScreen_Check.TabIndex = 8;
-            this.HasEndScreen_Check.Text = "Has End Screen";
-            this.HasEndScreen_Check.UseVisualStyleBackColor = true;
-            this.HasEndScreen_Check.CheckedChanged += new System.EventHandler(this.HasEndScreen_Check_CheckedChanged);
+            this.OpenEndScreenImg_Button.Location = new System.Drawing.Point(9, 69);
+            this.OpenEndScreenImg_Button.Name = "OpenEndScreenImg_Button";
+            this.OpenEndScreenImg_Button.Size = new System.Drawing.Size(56, 23);
+            this.OpenEndScreenImg_Button.TabIndex = 10;
+            this.OpenEndScreenImg_Button.Text = "Browse";
+            this.OpenEndScreenImg_Button.UseVisualStyleBackColor = true;
+            this.OpenEndScreenImg_Button.Click += new System.EventHandler(this.OpenEndScreenImg_Button_Click);
+            // 
+            // CustomEndScreen_Text
+            // 
+            this.CustomEndScreen_Text.Location = new System.Drawing.Point(72, 71);
+            this.CustomEndScreen_Text.Name = "CustomEndScreen_Text";
+            this.CustomEndScreen_Text.Size = new System.Drawing.Size(220, 20);
+            this.CustomEndScreen_Text.TabIndex = 11;
+            this.CustomEndScreen_Text.DoubleClick += new System.EventHandler(this.CustomEndScreen_Text_DoubleClick);
+            this.CustomEndScreen_Text.Leave += new System.EventHandler(this.CustomEndScreen_Text_Leave);
+            this.CustomEndScreen_Text.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.CustomEndScreen_Text_PreviewKeyDown);
             // 
             // HasCustomEndScreen_Check
             // 
@@ -225,31 +238,57 @@
             this.HasCustomEndScreen_Check.UseVisualStyleBackColor = true;
             this.HasCustomEndScreen_Check.CheckedChanged += new System.EventHandler(this.HasCustomEndScreen_Check_CheckedChanged);
             // 
-            // CustomEndScreen_Text
+            // HasEndScreen_Check
             // 
-            this.CustomEndScreen_Text.Location = new System.Drawing.Point(72, 71);
-            this.CustomEndScreen_Text.Name = "CustomEndScreen_Text";
-            this.CustomEndScreen_Text.Size = new System.Drawing.Size(220, 20);
-            this.CustomEndScreen_Text.TabIndex = 11;
-            this.CustomEndScreen_Text.DoubleClick += new System.EventHandler(this.CustomEndScreen_Text_DoubleClick);
-            this.CustomEndScreen_Text.Leave += new System.EventHandler(this.CustomEndScreen_Text_Leave);
-            this.CustomEndScreen_Text.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.CustomEndScreen_Text_PreviewKeyDown);
+            this.HasEndScreen_Check.AutoSize = true;
+            this.HasEndScreen_Check.Location = new System.Drawing.Point(10, 22);
+            this.HasEndScreen_Check.Name = "HasEndScreen_Check";
+            this.HasEndScreen_Check.Size = new System.Drawing.Size(104, 17);
+            this.HasEndScreen_Check.TabIndex = 8;
+            this.HasEndScreen_Check.Text = "Has End Screen";
+            this.HasEndScreen_Check.UseVisualStyleBackColor = true;
+            this.HasEndScreen_Check.CheckedChanged += new System.EventHandler(this.HasEndScreen_Check_CheckedChanged);
             // 
-            // OpenEndScreenImg_Button
+            // Chair_Group
             // 
-            this.OpenEndScreenImg_Button.Location = new System.Drawing.Point(9, 69);
-            this.OpenEndScreenImg_Button.Name = "OpenEndScreenImg_Button";
-            this.OpenEndScreenImg_Button.Size = new System.Drawing.Size(56, 23);
-            this.OpenEndScreenImg_Button.TabIndex = 10;
-            this.OpenEndScreenImg_Button.Text = "Browse";
-            this.OpenEndScreenImg_Button.UseVisualStyleBackColor = true;
-            this.OpenEndScreenImg_Button.Click += new System.EventHandler(this.OpenEndScreenImg_Button_Click);
+            this.Chair_Group.Controls.Add(this.label1);
+            this.Chair_Group.Controls.Add(this.GameChair_Checked);
+            this.Chair_Group.Location = new System.Drawing.Point(12, 200);
+            this.Chair_Group.Name = "Chair_Group";
+            this.Chair_Group.Size = new System.Drawing.Size(305, 72);
+            this.Chair_Group.TabIndex = 0;
+            this.Chair_Group.TabStop = false;
+            this.Chair_Group.Text = "Stream Chair";
+            // 
+            // GameChair_Checked
+            // 
+            this.GameChair_Checked.AutoSize = true;
+            this.GameChair_Checked.Checked = true;
+            this.GameChair_Checked.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.GameChair_Checked.Location = new System.Drawing.Point(10, 22);
+            this.GameChair_Checked.Name = "GameChair_Checked";
+            this.GameChair_Checked.Size = new System.Drawing.Size(111, 17);
+            this.GameChair_Checked.TabIndex = 6;
+            this.GameChair_Checked.Text = "Has Gaming Chair";
+            this.GameChair_Checked.UseVisualStyleBackColor = true;
+            this.GameChair_Checked.CheckedChanged += new System.EventHandler(this.GameChair_Checked_CheckedChanged);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.label1.Location = new System.Drawing.Point(11, 46);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(191, 13);
+            this.label1.TabIndex = 7;
+            this.label1.Text = "* Only applicable to some backgrounds";
             // 
             // StreamAdvancedOptions
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(330, 432);
+            this.ClientSize = new System.Drawing.Size(330, 502);
+            this.Controls.Add(this.Chair_Group);
             this.Controls.Add(this.GameBorders_Group);
             this.Controls.Add(this.StreamInterface_Group);
             this.Controls.Add(this.StreamEnd_Group);
@@ -272,6 +311,8 @@
             this.GameBorders_Group.PerformLayout();
             this.StreamEnd_Group.ResumeLayout(false);
             this.StreamEnd_Group.PerformLayout();
+            this.Chair_Group.ResumeLayout(false);
+            this.Chair_Group.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -294,5 +335,8 @@
         private System.Windows.Forms.CheckBox HasCustomEndScreen_Check;
         private System.Windows.Forms.TextBox CustomEndScreen_Text;
         private System.Windows.Forms.Button OpenEndScreenImg_Button;
+        private System.Windows.Forms.GroupBox Chair_Group;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.CheckBox GameChair_Checked;
     }
 }

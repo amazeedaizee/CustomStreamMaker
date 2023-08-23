@@ -33,6 +33,7 @@ namespace CustomStreamMaker
             if (File.Exists(editor.settings.CustomEndScreenPath))
                 CustomEndScreen_Text.Text = editor.settings.CustomEndScreenPath;
             else CustomEndScreen_Text.Text = "";
+            GameChair_Checked.Checked = editor.settings.HasChair;
         }
 
         private void HasIntro_Check_CheckedChanged(object sender, EventArgs e)
@@ -152,6 +153,11 @@ namespace CustomStreamMaker
                 editor.settings.CustomEndScreenPath = CustomEndScreen_Text.Text;
             }
 
+        }
+
+        private void GameChair_Checked_CheckedChanged(object sender, EventArgs e)
+        {
+            editor.settings.HasChair = GameChair_Checked.Checked;
         }
     }
 }

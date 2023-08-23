@@ -43,6 +43,8 @@ namespace CustomStreamMaker
         public bool HasCustomEndScreen;
         public string CustomEndScreenPath;
 
+        public bool HasChair = true;
+
         public bool IsInvertedColors;
         public bool isBordersOff;
 
