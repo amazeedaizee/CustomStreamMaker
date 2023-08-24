@@ -150,7 +150,7 @@ namespace CustomStreamMaker
                 MessageBox.Show("Selected path doesn't exist.");
                 return;
             }
-            if (!CustomAssetExtractor.CheckIfClipExists(path, missing.fileName, out var message))
+            if (!CustomAssetExtractor.CheckIfImageExists(path, missing.fileName, out var message))
             {
                 MessageBox.Show(message);
                 return;
