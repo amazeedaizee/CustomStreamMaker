@@ -262,8 +262,7 @@ namespace CustomStreamMaker
                     }
                     else if (type == CustomAssetFileType.ImageFile)
                     {
-                        if (!editedAsset.filePath.Contains("?"))
-                            editedAsset.filePath += "?";
+                        editedAsset.filePath = missingFileMessage.newPath;
                     }
                     else
                     {
