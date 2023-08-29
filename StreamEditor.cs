@@ -108,13 +108,7 @@ namespace CustomStreamMaker
             ChangeVisibilityForPlayingObjEditors();
             InitializeLists();
             InitializeDefaultFields();
-            EnableSuperChatReply();
-            EnableHateCallout();
-            InitializeNewStreamSettings();
-            InitializeEnabledTrackbar();
-            InitializeEffectIntensity();
-            SetNewBackgroundPreview("bg_stream");
-            SetNewSpritePreview("stream_cho_akaruku");
+
             SetStreamLoaderVisibility();
             StreamPlayingList.ClearSelection();
             CustomAssetExtractor.LoadCustomAssets();
@@ -306,30 +300,36 @@ namespace CustomStreamMaker
         private void InitializeDefaultFields()
         {
             StreamTItle_Text.Text = "";
-            StartingAnimation_List.SelectedItem = "stream_cho_akaruku";
-            KAnim_SuperReply_List.SelectedItem = "stream_cho_akaruku";
-            KAnim_React_List.SelectedItem = "stream_cho_reaction1";
-            KAnim_List.SelectedItem = "stream_cho_akaruku";
+            StartingAnimation_List.Text = "stream_cho_akaruku";
+            KAnim_SuperReply_List.Text = "stream_cho_akaruku";
+            KAnim_React_List.Text = "stream_cho_reaction1";
+            KAnim_List.Text = "stream_cho_akaruku";
             _currentKAnim = "stream_cho_akaruku";
             _currentKAnimReply = "stream_cho_akaruku";
             ChatStatusNormal_Radio.Checked = true;
-            StartingMusic_List.SelectedItem = "BGM_mainloop_normal";
-            PlayMusic_List.SelectedItem = "BGM_mainloop_normal";
+            StartingMusic_List.Text = "BGM_mainloop_normal";
+            PlayMusic_List.Text = "BGM_mainloop_normal";
             _currentMusic = "BGM_mainloop_normal";
-            PlaySE_List.SelectedItem = "SE_Tetehen";
+            PlaySE_List.Text = "SE_Tetehen";
             _currentSE = "SE_Tetehen";
-            StartingEffect_List.SelectedItem = "Kenjo";
+            StartingEffect_List.Text = "Kenjo";
             EffectIntensity_Trackbar.Value = 0;
             BorderEffect_In_Radio.Checked = true;
-            BorderEffect_List.SelectedItem = "None";
-            StartingBackground_List.SelectedItem = "bg_stream";
+            BorderEffect_List.Text = "None";
+            StartingBackground_List.Text = "bg_stream";
             HateComment_Text.Text = string.Empty;
             KAngelDialogue_Text.Text = string.Empty;
             ChatComment_TextBox.Text = string.Empty;
             IsStressComment_Check.Checked = false;
             IsSuperChat_Check.Checked = false;
             KAngelReply_TextBox.Text = string.Empty;
-
+            EnableSuperChatReply();
+            EnableHateCallout();
+            InitializeNewStreamSettings();
+            InitializeEnabledTrackbar();
+            InitializeEffectIntensity();
+            SetNewBackgroundPreview("bg_stream");
+            SetNewSpritePreview("stream_cho_akaruku");
         }
 
         private string[] CreateEffectList()

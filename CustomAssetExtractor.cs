@@ -153,6 +153,17 @@ namespace CustomStreamMaker
                 var pathsToSearch = new List<(string bundle, bool isAddressable)>();
                 foreach (var asset in currentAssets)
                 {
+                    var sameAssetDifferentPath = customAssets.Find(a => a.fileName == asset.fileName && a.customAssetFileType == asset.customAssetFileType && a.filePath != asset.filePath);
+                    if (sameAssetDifferentPath != null && File.Exists(asset.filePath) && !File.Exists(sameAssetDifferentPath.filePath))
+                    {
+                        sameAssetDifferentPath.filePath = asset.filePath;
+                        continue;
+                    }
+                    if (sameAssetDifferentPath != null && !File.Exists(asset.filePath) && File.Exists(sameAssetDifferentPath.filePath))
+                    {
+                        asset.filePath = sameAssetDifferentPath.filePath;
+                        continue;
+                    }
                     if (!customAssets.Exists(a => CustomAsset.IsCustomAssetTheSame(a, asset)) && File.Exists(asset.filePath))
                     {
                         AddValidAssetToCusAssets(asset, ref assetsToSync, ref pathsToSearch);
@@ -161,6 +172,7 @@ namespace CustomStreamMaker
                     if (!File.Exists(asset.filePath) && !missingAssets.Exists(a => CustomAsset.IsCustomAssetTheSame(asset, a)))
                         missingAssets.Add(asset);
                 }
+                SaveCustomAssets();
                 foreach (var path in pathsToSearch)
                 {
                     List<string> clipNames = new();
@@ -265,6 +277,14 @@ namespace CustomStreamMaker
                     else if (type == CustomAssetFileType.ImageFile)
                     {
                         editedAsset.filePath = missingFileMessage.newPath;
+                        if (!customAssets.Exists(a => a.fileName == editedAsset.fileName))
+                        {
+                            CustomAsset newAsset = new CustomAsset(asset.customAssetType, asset.customAssetFileType, asset.fileName, asset.filePath);
+                            newAsset.catalogPath = asset.catalogPath;
+                            newAsset.picWidth = asset.picWidth;
+                            newAsset.picHeight = asset.picHeight;
+                            customAssets.Add(newAsset);
+                        }
                     }
                     else
                     {
