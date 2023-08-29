@@ -35,7 +35,8 @@ namespace CustomStreamMaker
             Asset_Name_Label.Text += " " + missing.fileName;
             FileType_Label.Text += " " + LoadFileType();
             PastFilePath_Text.Text = filePath;
-            var textHeight = (int)(8 * Math.Floor((double)(PastFilePath_Text.Text.Length / 99)));
+            var singleLineHeight = (double)(PastFilePath_Text.Text.Length / 99d);
+            var textBoxHeight = (int)(8 * Math.Round(singleLineHeight, MidpointRounding.AwayFromZero));
             if (missing.customAssetFileType != CustomAssetFileType.ImageFile)
             {
                 AddAddressable.Text = "Add As Addressable";
@@ -46,9 +47,9 @@ namespace CustomStreamMaker
                 AddAddressable.Text = "Add As Image";
                 AddAsAssetBundle.Visible = false;
             }
-            Size = new System.Drawing.Size(534, 362 + textHeight);
-            PastFilePath_Text.Size = new System.Drawing.Size(413, 23 + textHeight);
-            CustomAsset_Group.Size = new System.Drawing.Size(491, 119 + textHeight);
+            Size = new System.Drawing.Size(534, 362 + textBoxHeight);
+            PastFilePath_Text.Size = new System.Drawing.Size(413, 23 + textBoxHeight);
+            CustomAsset_Group.Size = new System.Drawing.Size(491, 119 + textBoxHeight);
         }
 
         private string OpenNewPath()

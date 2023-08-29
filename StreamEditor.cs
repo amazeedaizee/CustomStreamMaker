@@ -256,7 +256,13 @@ namespace CustomStreamMaker
             StartingAnimation_List.Text = settings.StartingAnimation;
             StartingMusic_List.Text = settings.StartingMusic.ToString();
             if (settings.StartingBackground == StreamBackground.None)
-                StartingBackground_List.SelectedIndex = 0;
+            {
+                if (settings.CustomBackground != null && File.Exists(settings.CustomBackground.filePath))
+                {
+                    StartingBackground_List.Text = settings.CustomBackground.fileName;
+                }
+                else StartingBackground_List.SelectedIndex = 0;
+            }
             else StartingBackground_List.SelectedIndex = (int)settings.StartingBackground;
             StartingEffect_List.SelectedIndex = (int)settings.StartingEffect;
             EffectIntensity_Trackbar.Value = (int)settings.EffectIntensity * 100;
@@ -528,7 +534,11 @@ namespace CustomStreamMaker
             var text = StartingBackground_List.Text;
             if (!(animList.Contains(text) || (CustomAssetExtractor.customAssets.Count > 0 && CustomAssetExtractor.customAssets.Exists(a => a.fileName == text && a.customAssetType == CustomAssetType.Background))))
             {
-                StartingBackground_List.SelectedItem = StartingBackground_List.Items[(int)settings.StartingBackground];
+                try
+                {
+                    StartingBackground_List.SelectedItem = StartingBackground_List.Items[(int)settings.StartingBackground];
+                }
+                catch { StartingBackground_List.Text = "bg_stream"; }
                 return false;
             }
             StartingBackground_List.SelectedItem = text;

@@ -153,7 +153,7 @@ namespace CustomStreamMaker
                 var pathsToSearch = new List<(string bundle, bool isAddressable)>();
                 foreach (var asset in currentAssets)
                 {
-                    if (!customAssets.Exists(a => CustomAsset.IsCustomAssetTheSame(a, asset) && File.Exists(asset.filePath)))
+                    if (!customAssets.Exists(a => CustomAsset.IsCustomAssetTheSame(a, asset)) && File.Exists(asset.filePath))
                     {
                         AddValidAssetToCusAssets(asset, ref assetsToSync, ref pathsToSearch);
                         continue;
@@ -225,7 +225,9 @@ namespace CustomStreamMaker
                 newAsset.catalogPath = asset.catalogPath;
                 newAsset.picWidth = asset.picWidth;
                 newAsset.picHeight = asset.picHeight;
-                assetToAdd.Add(newAsset);
+                if (asset.customAssetType == CustomAssetType.Sprite)
+                    assetToAdd.Add(newAsset);
+                else customAssets.Add(newAsset);
             }
             if (!pathToSearch.Exists(p => p.Item1 == asset.filePath) && asset.customAssetType == CustomAssetType.Sprite)
                 pathToSearch.Add(new(asset.filePath, asset.customAssetFileType == CustomAssetFileType.AddressableBundle));
