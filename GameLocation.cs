@@ -9,7 +9,11 @@ namespace CustomStreamMaker
         internal static string InitializeValidGamePath()
         {
             string gamePath;
-            if (Environment.Is64BitOperatingSystem)
+            if (!string.IsNullOrEmpty(Properties.Settings.Default.GameDirectory))
+            {
+                gamePath = Properties.Settings.Default.GameDirectory;
+            }
+            else if (Environment.Is64BitOperatingSystem)
             {
                 gamePath = (string)RegistryKey.OpenBaseKey(RegistryHive.LocalMachine, RegistryView.Registry64).OpenSubKey(@"SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\Steam App 1451940", false).GetValue("InstallLocation");
             }
