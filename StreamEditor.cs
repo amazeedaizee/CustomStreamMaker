@@ -982,7 +982,7 @@ namespace CustomStreamMaker
                     if (obj.PlayingType == PlayingType.ChatSuper)
                     {
                         _currentSuperReplies.Clear();
-                        var firstReply = chat.Replies.First();
+                        var firstReply = chat.Replies[0];
                         _currentSuperReplies.Add(firstReply);
                         IsStressComment_Check.Checked = false;
                         IsSuperChat_Check.Checked = true;
@@ -1002,9 +1002,13 @@ namespace CustomStreamMaker
                         IsSuperChat_Check.Checked = false;
                         IsStressComment_Check.Checked = false;
                     }
-                    KAnim_SuperReply_List.Text = "stream_cho_akaruku";
-                    KAngelReply_TextBox.Text = "";
-                    _currentSuperReplies = new() { new("stream_cho_akaruku", "") };
+                    if (obj.PlayingType != PlayingType.ChatSuper)
+                    {
+                        KAnim_SuperReply_List.Text = "stream_cho_akaruku";
+                        KAngelReply_TextBox.Text = "";
+                        _currentSuperReplies = new() { new("stream_cho_akaruku", "") };
+                    }
+
                     break;
                 case PlayingType.PlaySE:
                     PlaySound se = obj as PlaySound;
@@ -1241,7 +1245,7 @@ namespace CustomStreamMaker
 
         private void KAngelReply_TextBox_TextChanged(object sender, EventArgs e)
         {
-            _currentSuperReplies[0].Dialogue = KAngelReply_TextBox.Text;
+            //_currentSuperReplies[0].Dialogue = KAngelReply_TextBox.Text;
         }
 
         private void AddEditReplies_TextBox_Click(object sender, EventArgs e)
