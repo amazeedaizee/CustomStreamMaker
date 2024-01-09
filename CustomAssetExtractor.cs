@@ -37,7 +37,7 @@ namespace CustomStreamMaker
 {
     public enum CustomAssetType
     {
-        Background, Sprite, EndScreen
+        Background, Sprite, EndScreen, None = 1000
     }
 
     public enum CustomAssetFileType

@@ -37,6 +37,7 @@
             this.AddBackground_Button = new System.Windows.Forms.Button();
             this.AddAnimation_AssetLz4 = new System.Windows.Forms.Button();
             this.AddAnimation_AddressableLz4 = new System.Windows.Forms.Button();
+            this.SearchBar = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.CustomAssetsPreviewPic)).BeginInit();
             this.SuspendLayout();
             // 
@@ -53,16 +54,17 @@
             // 
             // CustomAssetsListView
             // 
+            this.CustomAssetsListView.AllowColumnReorder = true;
             this.CustomAssetsListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.Type,
             this.Name,
             this.FilePath});
             this.CustomAssetsListView.FullRowSelect = true;
             this.CustomAssetsListView.HideSelection = false;
-            this.CustomAssetsListView.Location = new System.Drawing.Point(377, 12);
+            this.CustomAssetsListView.Location = new System.Drawing.Point(377, 38);
             this.CustomAssetsListView.Name = "CustomAssetsListView";
-            this.CustomAssetsListView.Size = new System.Drawing.Size(541, 391);
-            this.CustomAssetsListView.TabIndex = 3;
+            this.CustomAssetsListView.Size = new System.Drawing.Size(541, 365);
+            this.CustomAssetsListView.TabIndex = 4;
             this.CustomAssetsListView.UseCompatibleStateImageBehavior = false;
             this.CustomAssetsListView.View = System.Windows.Forms.View.Details;
             this.CustomAssetsListView.SelectedIndexChanged += new System.EventHandler(this.CustomAssetsListView_SelectedIndexChanged);
@@ -112,11 +114,23 @@
             this.AddAnimation_AddressableLz4.UseVisualStyleBackColor = true;
             this.AddAnimation_AddressableLz4.Click += new System.EventHandler(this.AddAnimation_AddressableLz4_Click);
             // 
+            // SearchBar
+            // 
+            this.SearchBar.AcceptsReturn = true;
+            this.SearchBar.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.SearchBar.Location = new System.Drawing.Point(377, 13);
+            this.SearchBar.Name = "SearchBar";
+            this.SearchBar.Size = new System.Drawing.Size(541, 20);
+            this.SearchBar.TabIndex = 3;
+            this.SearchBar.Enter += new System.EventHandler(this.SearchBar_Enter);
+            this.SearchBar.KeyDown += new System.Windows.Forms.KeyEventHandler(this.SearchBar_KeyDown);
+            // 
             // CustomAssetPreview
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(930, 423);
+            this.Controls.Add(this.SearchBar);
             this.Controls.Add(this.AddAnimation_AddressableLz4);
             this.Controls.Add(this.AddAnimation_AssetLz4);
             this.Controls.Add(this.AddBackground_Button);
@@ -132,6 +146,7 @@
             this.Click += new System.EventHandler(this.CustomAssetPreview_Click);
             ((System.ComponentModel.ISupportInitialize)(this.CustomAssetsPreviewPic)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -145,5 +160,6 @@
         private System.Windows.Forms.ColumnHeader Name;
         private System.Windows.Forms.ColumnHeader FilePath;
         private System.Windows.Forms.Button AddAnimation_AddressableLz4;
+        private System.Windows.Forms.TextBox SearchBar;
     }
 }
