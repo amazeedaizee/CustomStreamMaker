@@ -662,35 +662,55 @@ namespace CustomStreamMaker
 
         internal static void ImportImage(bool isEndScreen = false)
         {
+            bool isLoadImages = false;
+            bool isErrorExist = false;
             OpenFileDialog openNsoStream = new OpenFileDialog();
             openNsoStream.InitialDirectory = string.IsNullOrEmpty(Properties.Settings.Default.ImageDirectory) ? Environment.GetFolderPath(Environment.SpecialFolder.MyPictures) : Properties.Settings.Default.ImageDirectory;
             openNsoStream.Filter = "png File (*.png)|*.png|jpg File (*.jpg)|*.jpg";
             openNsoStream.FilterIndex = 1;
             openNsoStream.RestoreDirectory = true;
+            openNsoStream.Multiselect = true;
             if (openNsoStream.ShowDialog() == DialogResult.OK)
             {
-                Properties.Settings.Default.ImageDirectory = Path.GetDirectoryName(openNsoStream.FileName);
-                try
+                Properties.Settings.Default.ImageDirectory = Path.GetDirectoryName(openNsoStream.FileNames[0]);
+                foreach (var file in openNsoStream.FileNames)
                 {
-                    var data = File.ReadAllBytes(openNsoStream.FileName);
-                    var format = Image.DetectFormat(data);
-                    if (format == null || !(format is PngFormat || format is JpegFormat))
+                    try
                     {
-                        MessageBox.Show("Could not load image file, only PNG's and JPEG's are supported.", "Unsupported file type", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        return;
+                        var data = File.ReadAllBytes(file);
+                        var format = Image.DetectFormat(data);
+                        if (format == null || !(format is PngFormat || format is JpegFormat))
+                        {
+                            MessageBox.Show("Could not load image file, only PNG's and JPEG's are supported.", "Unsupported file type", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            return;
+                        }
+                        var fileName = Path.GetFileNameWithoutExtension(file);
+                        var importedImageInfo = new CustomAsset(isEndScreen ? CustomAssetType.EndScreen : CustomAssetType.Background, CustomAssetFileType.ImageFile, fileName, file);
+                        if (customAssets.Exists(a => a.filePath == importedImageInfo.filePath))
+                        {
+                            MessageBox.Show("Could not create asset, this custom asset already exists.", "Could not create new asset", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            return;
+                        }
+                        customAssets.Add(importedImageInfo);
+                        SaveCustomAssets();
+
+                        isLoadImages = true;
                     }
-                    var fileName = Path.GetFileNameWithoutExtension(openNsoStream.FileName);
-                    var importedImageInfo = new CustomAsset(isEndScreen ? CustomAssetType.EndScreen : CustomAssetType.Background, CustomAssetFileType.ImageFile, fileName, openNsoStream.FileName);
-                    if (customAssets.Exists(a => a.filePath == importedImageInfo.filePath))
-                    {
-                        MessageBox.Show("Could not create asset, this custom asset already exists.", "Could not create new asset", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        return;
-                    }
-                    customAssets.Add(importedImageInfo);
-                    SaveCustomAssets();
-                    MessageBox.Show("Import successful!");
+                    catch { isErrorExist = true; }
                 }
-                catch { MessageBox.Show("Could not load image file, either the image file is corrupt or is not supported.", "Could not read image file", MessageBoxButtons.OK, MessageBoxIcon.Error); }
+                if (isErrorExist && isLoadImages)
+                {
+                    MessageBox.Show("Could not load all image files, either those image files are corrupt or are not supported.\nSuccessfully loaded image files can be found in the asset list.", "Could not read all image files", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                else if (isLoadImages && !isErrorExist)
+                {
+                    MessageBox.Show("All imports successful!");
+                }
+                else if (isErrorExist)
+                {
+                    MessageBox.Show("Could not load any image files, either the image files are corrupt or are not supported.", "Could not read image files", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+
             }
         }
     }
