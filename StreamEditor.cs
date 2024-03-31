@@ -766,7 +766,7 @@ namespace CustomStreamMaker
         {
             settings.PlayingList.RemoveAt(index);
             StreamPlayingList.Rows.RemoveAt(index);
-
+            ChangeFileLabelIfUnsaved();
         }
 
         string SetPlayingType(PlayingObject playingObject)

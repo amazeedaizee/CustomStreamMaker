@@ -79,6 +79,7 @@ namespace CustomStreamMaker
         {
             kAngelSaysDupe.RemoveAt(index);
             SuperRepliesListView.Rows.RemoveAt(index);
+            streamEditor.ChangeFileLabelIfUnsaved();
         }
 
         private void SetNewSpritePreview(string imgName)
@@ -140,11 +141,13 @@ namespace CustomStreamMaker
             {
                 EditToReplyListView(SuperRepliesListView.SelectedRows[0].Index);
                 CheckIfAtReplyLimit();
+                streamEditor.ChangeFileLabelIfUnsaved();
                 return;
             }
             AddToReplyListView(new KAngelSays(_currentAnim, KAngelReply_Text.Text));
             SuperRepliesListView.ClearSelection();
             CheckIfAtReplyLimit();
+            streamEditor.ChangeFileLabelIfUnsaved();
         }
 
         private void SuperChatComment_MouseClick(object sender, MouseEventArgs e)
