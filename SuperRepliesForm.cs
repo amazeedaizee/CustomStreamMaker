@@ -141,13 +141,11 @@ namespace CustomStreamMaker
             {
                 EditToReplyListView(SuperRepliesListView.SelectedRows[0].Index);
                 CheckIfAtReplyLimit();
-                streamEditor.ChangeFileLabelIfUnsaved();
                 return;
             }
             AddToReplyListView(new KAngelSays(_currentAnim, KAngelReply_Text.Text));
             SuperRepliesListView.ClearSelection();
             CheckIfAtReplyLimit();
-            streamEditor.ChangeFileLabelIfUnsaved();
         }
 
         private void SuperChatComment_MouseClick(object sender, MouseEventArgs e)
@@ -176,6 +174,7 @@ namespace CustomStreamMaker
             var firstReply = new KAngelSays(streamEditor._currentSuperReplies[0].AnimName, streamEditor._currentSuperReplies[0].Dialogue, streamEditor._currentSuperReplies[0].customAnim);
             streamEditor._currentSuperReplies = new List<KAngelSays>() { firstReply };
             streamEditor._currentSuperReplies.AddRange(kAngelSaysDupe);
+            streamEditor.ChangeFileLabelIfUnsaved();
             Dispose();
         }
 

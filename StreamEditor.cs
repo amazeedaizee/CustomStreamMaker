@@ -1398,8 +1398,21 @@ namespace CustomStreamMaker
 
         private void StreamPlayingList_KeyDown(object sender, KeyEventArgs e)
         {
+
             if (e.KeyCode == Keys.Delete && (StreamPlayingList.SelectedRows.Count > 0))
-                DeleteFromPlayingListView(StreamPlayingList.SelectedRows[0].Index);
+            {
+                int start = StreamPlayingList.SelectedRows[0].Index;
+                int count = StreamPlayingList.SelectedRows.Count;
+                for (int i = start; i < (start + count); i++)
+                {
+                    AddToUndoHistory(EditType.Delete, i, settings.PlayingList[i]);
+                    DeleteFromPlayingListView(i);
+
+                }
+
+            }
+
+
         }
 
         private void loadToolStripMenuItem_Click(object sender, EventArgs e)
