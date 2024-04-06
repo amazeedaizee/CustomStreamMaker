@@ -917,8 +917,12 @@ namespace CustomStreamMaker
 
         private void KAnim_SuperReply_List_SelectedIndexChanged(object sender, EventArgs e)
         {
-            _currentKAnimReply = (string)KAnim_SuperReply_List.SelectedItem;
-            SetNewSpritePreview(_currentKAnimReply);
+            int count = StreamPlayingList.SelectedRows.Count;
+            if (count == 0 || (count > 0 && settings.PlayingList[StreamPlayingList.SelectedRows[0].Index].PlayingType == PlayingType.ChatSuper))
+            {
+                _currentKAnimReply = (string)KAnim_SuperReply_List.SelectedItem;
+                SetNewSpritePreview(_currentKAnimReply);
+            }
         }
 
         private void StreamTItle_Text_TextChanged(object sender, EventArgs e)
@@ -979,7 +983,7 @@ namespace CustomStreamMaker
                     PlayingType_List.SelectedIndex = 1;
                     var chat = obj as ChatSays;
                     ChatComment_TextBox.Text = chat.Comment;
-                    if (obj.PlayingType == PlayingType.ChatSuper)
+                    if (chat.PlayingType == PlayingType.ChatSuper)
                     {
                         _currentSuperReplies.Clear();
                         var firstReply = chat.Replies[0];
@@ -989,10 +993,11 @@ namespace CustomStreamMaker
                         KAnim_SuperReply_List.Text = firstReply.AnimName;
                         KAngelReply_TextBox.Text = firstReply.Dialogue;
                         _currentKAnimReply = KAnim_SuperReply_List.Text;
+                        SetNewSpritePreview(_currentKAnimReply);
                         CreateDuplicateReplies(chat);
                         break;
                     }
-                    else if (obj.PlayingType == PlayingType.ChatBad)
+                    else if (chat.PlayingType == PlayingType.ChatBad)
                     {
                         IsSuperChat_Check.Checked = false;
                         IsStressComment_Check.Checked = true;
@@ -1002,13 +1007,12 @@ namespace CustomStreamMaker
                         IsSuperChat_Check.Checked = false;
                         IsStressComment_Check.Checked = false;
                     }
-                    if (obj.PlayingType != PlayingType.ChatSuper)
+                    if (chat.PlayingType != PlayingType.ChatSuper)
                     {
                         KAnim_SuperReply_List.Text = "stream_cho_akaruku";
                         KAngelReply_TextBox.Text = "";
                         _currentSuperReplies = new() { new("stream_cho_akaruku", "") };
                     }
-
                     break;
                 case PlayingType.PlaySE:
                     PlaySound se = obj as PlaySound;
