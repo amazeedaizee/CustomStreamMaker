@@ -442,15 +442,15 @@ namespace CustomStreamMaker
                     var tf = TextureFile.ReadTextureFile(tex);
                     var texDat = tf.GetTextureData(assetInst);
                     var dataLocation = tex["m_StreamData"][0].AsInt;
-                    if (dataLocation == 17982288)
+                    if (dataLocation == 17982288 || dataLocation == 24249328)
                         animName = "stream_ame_drag_a";
-                    if (dataLocation == 167063456)
+                    if (dataLocation == 167063456 || dataLocation == 236309168)
                         animName = "stream_ame_drag_b";
-                    if (dataLocation == 78068800)
+                    if (dataLocation == 78068800 || dataLocation == 78068928)
                         animName = "stream_ame_drag_c";
-                    if (dataLocation == 7705732)
+                    if (dataLocation == 7705732 || dataLocation == 3293888)
                         animName = "stream_ame_drag_d";
-                    if (dataLocation == 249505492)
+                    if (dataLocation == 249505492 || dataLocation == 157852960)
                         animName = "stream_ame_drag_g";
                     if (animName == "")
                         continue;
