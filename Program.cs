@@ -24,7 +24,7 @@ namespace CustomStreamMaker
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message + "\n" + ex.StackTrace);
+                MessageBox.Show(ex.ToString());
             }
         }
         static Assembly OnAssemblyResolve(object sender, ResolveEventArgs args)
