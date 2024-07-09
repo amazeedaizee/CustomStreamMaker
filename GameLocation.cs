@@ -9,19 +9,31 @@ namespace CustomStreamMaker
         internal static string InitializeValidGamePath()
         {
             string gamePath;
-            if (!string.IsNullOrEmpty(Properties.Settings.Default.GameDirectory))
+            try
             {
-                gamePath = Properties.Settings.Default.GameDirectory;
+                if (!string.IsNullOrEmpty(Properties.Settings.Default.GameDirectory))
+                {
+                    gamePath = Properties.Settings.Default.GameDirectory;
+                }
+                else if (Environment.Is64BitOperatingSystem)
+                {
+                    gamePath = (string)RegistryKey.OpenBaseKey(RegistryHive.LocalMachine, RegistryView.Registry64).OpenSubKey(@"SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\Steam App 1451940", false).GetValue("InstallLocation");
+                }
+                else
+                {
+                    gamePath = (string)RegistryKey.OpenBaseKey(RegistryHive.LocalMachine, RegistryView.Registry32).OpenSubKey(@"SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\Steam App 1451940", false).GetValue("InstallLocation");
+                }
+                if (string.IsNullOrEmpty(Properties.Settings.Default.GameDirectory) && !string.IsNullOrEmpty(gamePath) && Directory.Exists(gamePath))
+                {
+                    Properties.Settings.Default.GameDirectory = gamePath;
+                    Properties.Settings.Default.Save();
+                }
+                return gamePath;
             }
-            else if (Environment.Is64BitOperatingSystem)
+            catch
             {
-                gamePath = (string)RegistryKey.OpenBaseKey(RegistryHive.LocalMachine, RegistryView.Registry64).OpenSubKey(@"SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\Steam App 1451940", false).GetValue("InstallLocation");
+                return null;
             }
-            else
-            {
-                gamePath = (string)RegistryKey.OpenBaseKey(RegistryHive.LocalMachine, RegistryView.Registry32).OpenSubKey(@"SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\Steam App 1451940", false).GetValue("InstallLocation");
-            }
-            return gamePath;
         }
 
         private string InitializeValidSteamPath()
