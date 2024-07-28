@@ -191,12 +191,14 @@ namespace CustomStreamMaker
         {
             if (customAnimFile != null)
             {
+                IsCustomAnim = true;
                 customAnim = new(CustomAssetType.Sprite, customAnimFile.customAssetFileType, customAnimFile.fileName, customAnimFile.filePath);
                 customAnim.picWidth = customAnimFile.picWidth;
                 customAnim.picHeight = customAnimFile.picHeight;
                 customAnim.catalogPath = customAnimFile.catalogPath;
                 return;
             }
+            IsCustomAnim = false;
             customAnim = null;
         }
     }
@@ -217,7 +219,6 @@ namespace CustomStreamMaker
         public KAngelCallout(KAngelSays angelSays, string hateComment)
         {
             HaterComment = hateComment;
-            IsCustomAnim = angelSays.IsCustomAnim;
             SetCustomAnim(angelSays.customAnim);
 
             AnimName = angelSays.AnimName;

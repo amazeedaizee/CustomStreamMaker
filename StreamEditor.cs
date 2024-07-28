@@ -532,7 +532,8 @@ namespace CustomStreamMaker
         private bool ValidateBackgroundValue()
         {
             var text = StartingBackground_List.Text;
-            if (!(animList.Contains(text) || (CustomAssetExtractor.customAssets.Count > 0 && CustomAssetExtractor.customAssets.Exists(a => a.fileName == text && a.customAssetType == CustomAssetType.Background))))
+            var isCustom = (CustomAssetExtractor.customAssets.Count > 0 && CustomAssetExtractor.customAssets.Exists(a => a.fileName == text && a.customAssetType == CustomAssetType.Background));
+            if (!(animList.Contains(text) || isCustom))
             {
                 try
                 {
