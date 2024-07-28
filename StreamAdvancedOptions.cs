@@ -21,13 +21,13 @@ namespace CustomStreamMaker
             CustomFollowers_Numeric.Value = editor.settings.CustomFollowerCount;
             InvertColors_Check.Checked = editor.settings.IsInvertedColors;
             RemoveBorders_Check.Checked = editor.settings.isBordersOff;
-            IsDarkAngelIntro_Check.Enabled = HasIntro_Check.Checked;
+            IsDarkAngelIntro_Check.Enabled = HasIntro_Check.Enabled;
             CustomFollowers_Numeric.Enabled = HasCustomFollowers_Check.Checked;
             HasEndScreen_Check.Checked = editor.settings.hasEndScreen;
             CustomDay_Numeric.Enabled = CustomDay_Check.Checked;
             CustomDay_Check.Checked = editor.settings.HasCustomDay;
             CustomDay_Numeric.Value = editor.settings.CustomDay;
-            HasCustomEndScreen_Check.Enabled = HasEndScreen_Check.Checked;
+            HasCustomEndScreen_Check.Enabled = HasEndScreen_Check.Enabled;
             HasCustomEndScreen_Check.Checked = editor.settings.HasCustomEndScreen;
             OpenEndScreenImg_Button.Enabled = HasCustomEndScreen_Check.Checked;
             CustomEndScreen_Text.Enabled = HasCustomEndScreen_Check.Checked;
@@ -35,12 +35,13 @@ namespace CustomStreamMaker
                 CustomEndScreen_Text.Text = editor.settings.CustomEndScreenPath;
             else CustomEndScreen_Text.Text = "";
             GameChair_Checked.Checked = editor.settings.HasChair;
+            DarkStream_Check.Checked = editor.settings.hasDarkInterface;
         }
 
         private void HasIntro_Check_CheckedChanged(object sender, EventArgs e)
         {
             editor.settings.IsIntroPlaying = HasIntro_Check.Checked;
-            IsDarkAngelIntro_Check.Enabled = HasIntro_Check.Checked;
+
         }
 
         private void IsDarkAngelIntro_Check_CheckedChanged(object sender, EventArgs e)
@@ -80,7 +81,7 @@ namespace CustomStreamMaker
             editor.settings.hasEndScreen = HasEndScreen_Check.Checked;
             if (!HasEndScreen_Check.Checked)
                 HasCustomEndScreen_Check.Checked = false;
-            HasCustomEndScreen_Check.Enabled = HasEndScreen_Check.Checked;
+            HasCustomEndScreen_Check.Enabled = HasEndScreen_Check.Checked && HasEndScreen_Check.Enabled;
         }
 
         private void CustomDay_Check_CheckedChanged(object sender, EventArgs e)
@@ -162,6 +163,30 @@ namespace CustomStreamMaker
         private void GameChair_Checked_CheckedChanged(object sender, EventArgs e)
         {
             editor.settings.HasChair = GameChair_Checked.Checked;
+        }
+
+        private void DarkStream_Check_CheckedChanged(object sender, EventArgs e)
+        {
+            editor.settings.hasDarkInterface = DarkStream_Check.Checked;
+            CheckIfDarkEnabled();
+
+        }
+
+        private void CheckIfDarkEnabled()
+        {
+            HasIntro_Check.Enabled = !editor.settings.hasDarkInterface;
+            HasEndScreen_Check.Enabled = !editor.settings.hasDarkInterface;
+            GameChair_Checked.Enabled = !editor.settings.hasDarkInterface;
+        }
+
+        private void HasIntro_Check_EnabledChanged(object sender, EventArgs e)
+        {
+            IsDarkAngelIntro_Check.Enabled = HasIntro_Check.Enabled;
+        }
+
+        private void HasEndScreen_Check_EnabledChanged(object sender, EventArgs e)
+        {
+            HasCustomEndScreen_Check.Enabled = HasEndScreen_Check.Enabled;
         }
     }
 }

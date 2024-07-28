@@ -62,10 +62,10 @@
       <HintPath>bin\Debug\AssetRipper.TextureDecoder.dll</HintPath>
     </Reference>
     <Reference Include="AssetsTools.NET, Version=3.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>packages\AssetsTools.NET.3.0.0-preview4\lib\net40\AssetsTools.NET.dll</HintPath>
+      <HintPath>packages\AssetsTools.NET.3.0.0\lib\net40\AssetsTools.NET.dll</HintPath>
     </Reference>
     <Reference Include="AssetsTools.NET.Texture, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>packages\AssetsTools.NET.Texture.1.0.0-preview3\lib\netstandard2.0\AssetsTools.NET.Texture.dll</HintPath>
+      <HintPath>packages\AssetsTools.NET.Texture.1.0.0\lib\netstandard2.0\AssetsTools.NET.Texture.dll</HintPath>
     </Reference>
     <Reference Include="AssetsView">
       <HintPath>ExtraLibraries\AssetsView.dll</HintPath>
@@ -135,7 +135,7 @@
       <HintPath>bin\Debug\OggVorbisEncoder.dll</HintPath>
     </Reference>
     <Reference Include="SixLabors.ImageSharp, Version=2.0.0.0, Culture=neutral, PublicKeyToken=d998eea7b14cab13, processorArchitecture=MSIL">
-      <HintPath>packages\SixLabors.ImageSharp.2.1.8\lib\net472\SixLabors.ImageSharp.dll</HintPath>
+      <HintPath>packages\SixLabors.ImageSharp.2.1.9\lib\net472\SixLabors.ImageSharp.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.AppContext, Version=4.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">

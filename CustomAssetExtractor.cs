@@ -104,10 +104,11 @@ namespace CustomStreamMaker
         internal static List<CustomAsset> customAssets = new();
         internal static string catalogPath = null;
 
-        internal static void CheckForMissingFilesInSettings(ref StreamSettings settings)
+        internal static void CheckIfMissingFilesInSettings(ref StreamSettings settings, out bool hasChangedPaths)
         {
             var currentAssets = new List<CustomAsset>();
             var missingAssets = new List<CustomAsset>();
+            hasChangedPaths = false;
             if (settings.CustomBackground != null)
                 currentAssets.Add(settings.CustomBackground);
             if (settings.CustomStartingAnimation != null)
@@ -115,11 +116,13 @@ namespace CustomStreamMaker
             GetUniqueAssetsInSettings(ref settings);
             if (currentAssets.Count == 0)
                 return;
-            CacheValidAssets();
+            CacheValidAssets(out hasChangedPaths);
             if (missingAssets.Count == 0)
                 return;
             PromptMissingFiles(missingAssets, ref currentAssets);
             ReplaceMissingAssetsWithDefault(ref settings);
+            hasChangedPaths = true;
+            return;
 
             void GetUniqueAssetsInSettings(ref StreamSettings settings)
             {
@@ -147,8 +150,9 @@ namespace CustomStreamMaker
                 }
             }
 
-            void CacheValidAssets()
+            void CacheValidAssets(out bool hasChangedPaths)
             {
+                hasChangedPaths = false;
                 var assetsToSync = new List<CustomAsset>();
                 var pathsToSearch = new List<(string bundle, bool isAddressable)>();
                 foreach (var asset in currentAssets)
@@ -157,16 +161,19 @@ namespace CustomStreamMaker
                     if (sameAssetDifferentPath != null && File.Exists(asset.filePath) && !File.Exists(sameAssetDifferentPath.filePath))
                     {
                         sameAssetDifferentPath.filePath = asset.filePath;
+                        hasChangedPaths = true;
                         continue;
                     }
                     if (sameAssetDifferentPath != null && !File.Exists(asset.filePath) && File.Exists(sameAssetDifferentPath.filePath))
                     {
                         asset.filePath = sameAssetDifferentPath.filePath;
+                        hasChangedPaths = true;
                         continue;
                     }
                     if (!customAssets.Exists(a => CustomAsset.IsCustomAssetTheSame(a, asset)) && File.Exists(asset.filePath))
                     {
                         AddValidAssetToCusAssets(asset, ref assetsToSync, ref pathsToSearch);
+                        hasChangedPaths = true;
                         continue;
                     }
                     if (!File.Exists(asset.filePath) && !missingAssets.Exists(a => CustomAsset.IsCustomAssetTheSame(asset, a)))
@@ -247,10 +254,11 @@ namespace CustomStreamMaker
         internal static void PromptMissingFiles(List<CustomAsset> missingFiles, ref List<CustomAsset> assetsToEdit)
         {
             bool ignoreAll = false;
-            var bundlesToLoad = new List<(string bundle, bool isAddressable)>();
+            var bundlesToLoad = new List<(string bundle, List<string> clipNames, bool isAddressable)>();
             var clipsToLoad = new List<(string clipName, string bundle)>();
             foreach (var asset in missingFiles)
             {
+                bool isInFoundBundle = false;
                 var editedAsset = assetsToEdit.Find(a => a == asset);
                 if (!File.Exists(asset.filePath))
                 {
@@ -260,6 +268,18 @@ namespace CustomStreamMaker
                             editedAsset.filePath += "?";
                         continue;
                     }
+                    if (asset.customAssetFileType != CustomAssetFileType.ImageFile)
+                        foreach (var bundle in bundlesToLoad)
+                        {
+                            if (bundle.clipNames.Contains(asset.fileName))
+                            {
+                                clipsToLoad.Add((asset.fileName, bundle.bundle));
+                                editedAsset.filePath = bundle.bundle;
+                                isInFoundBundle = true;
+                            }
+
+                        }
+                    if (isInFoundBundle) continue;
                     MissingFileMessage missingFileMessage = new(asset);
                     missingFileMessage.ShowDialog();
                     var type = missingFileMessage.missing.customAssetFileType;
@@ -276,21 +296,13 @@ namespace CustomStreamMaker
                     }
                     else if (type == CustomAssetFileType.ImageFile)
                     {
-                        editedAsset.filePath = missingFileMessage.newPath;
-                        if (!customAssets.Exists(a => a.fileName == editedAsset.fileName))
-                        {
-                            CustomAsset newAsset = new CustomAsset(asset.customAssetType, asset.customAssetFileType, asset.fileName, asset.filePath);
-                            newAsset.catalogPath = asset.catalogPath;
-                            newAsset.picWidth = asset.picWidth;
-                            newAsset.picHeight = asset.picHeight;
-                            customAssets.Add(newAsset);
-                        }
+                        EditMissingImage(missingFileMessage.newPath);
                     }
                     else
                     {
                         if (!string.IsNullOrEmpty(missingFileMessage.newPath) && (!bundlesToLoad.Exists(b => b.bundle == missingFileMessage.newPath)))
                         {
-                            bundlesToLoad.Add(new(missingFileMessage.newPath, type == CustomAssetFileType.AddressableBundle));
+                            bundlesToLoad.Add(new(missingFileMessage.newPath, GetClipNamesInBundle(missingFileMessage.newPath), type == CustomAssetFileType.AddressableBundle));
                         }
                         if (!string.IsNullOrEmpty(missingFileMessage.newPath) && (!clipsToLoad.Contains((missingFileMessage.missing.fileName, missingFileMessage.newPath))))
                         {
@@ -299,6 +311,19 @@ namespace CustomStreamMaker
                         editedAsset.filePath = missingFileMessage.newPath;
                     }
                     missingFileMessage.Dispose();
+                }
+
+                void EditMissingImage(string path)
+                {
+                    editedAsset.filePath = path;
+                    if (!customAssets.Exists(a => a.fileName == editedAsset.fileName))
+                    {
+                        CustomAsset newAsset = new CustomAsset(asset.customAssetType, asset.customAssetFileType, asset.fileName, asset.filePath);
+                        newAsset.catalogPath = asset.catalogPath;
+                        newAsset.picWidth = asset.picWidth;
+                        newAsset.picHeight = asset.picHeight;
+                        customAssets.Add(newAsset);
+                    }
                 }
             }
             foreach (var path in bundlesToLoad)
@@ -551,7 +576,9 @@ namespace CustomStreamMaker
                     foreach (var info in assInst.file.GetAssetsOfType(AssetClassID.AnimationClip))
                     {
                         var anim = am.GetBaseField(assInst, info);
-                        if (!(ThatOneLongListOfAnimationsOriginallyInTheGame.list.Contains(anim["m_Name"].AsString) || ThatOneLongListOfAnimationsOriginallyInTheGame.forbidden.Contains(anim["m_Name"].AsString)))
+                        if (!(ThatOneLongListOfAnimationsOriginallyInTheGame.list.Contains(anim["m_Name"].AsString)
+                            //|| ThatOneLongListOfAnimationsOriginallyInTheGame.forbidden.Contains(anim["m_Name"].AsString)
+                            ))
                             animNames.Add(anim["m_Name"].AsString);
                     }
                     if (animNames.Count == 0)
@@ -641,7 +668,21 @@ namespace CustomStreamMaker
             return false;
         }
 
-
+        internal static List<string> GetClipNamesInBundle(string path)
+        {
+            ;
+            var am = new AssetsManager();
+            var bunInst = am.LoadBundleFile(path, true);
+            var assInst = am.LoadAssetsFileFromBundle(bunInst, 0, true);
+            var bundleName = Path.GetFileNameWithoutExtension(path);
+            List<string> animNames = new();
+            foreach (var info in assInst.file.GetAssetsOfType(AssetClassID.AnimationClip))
+            {
+                var anim = am.GetBaseField(assInst, info);
+                animNames.Add(anim["m_Name"].AsString);
+            }
+            return animNames;
+        }
         internal static bool CheckIfImageFileExists(string path, out string message)
         {
             message = string.Empty;

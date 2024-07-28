@@ -32,15 +32,21 @@ namespace CustomStreamMaker
             await Task.Run(AssetExtractor.CacheSprites);
             progress.Report(100);
             await Task.Run(AssetExtractor.CacheAudio);
-            bool isAllCachedToMemory = AssetExtractor.SaveToMemory && (AssetExtractor.CachedBackgrounds.Count < 12 || AssetExtractor.CachedSprites.Count < 352 || AssetExtractor.CachedMusic.Count < 128);
-            bool isAllCachedToFiles = !AssetExtractor.SaveToMemory && (Directory.GetFiles(AssetExtractor.BackgroundDirectory).Length < 12 || Directory.GetFiles(AssetExtractor.SpriteDirectory).Length < 352 || Directory.GetFiles(AssetExtractor.AudioDirectory).Length < 128);
-            if (isAllCachedToMemory || isAllCachedToFiles)
+            if (!IsAllLoaded())
             {
                 MessageBox.Show("Some assets were either not loaded properly or are missing. Previews of these broken assets are disabled.", "Error");
+                Properties.Settings.Default.IsAssetsLoaded = false;
             }
             else Properties.Settings.Default.IsAssetsLoaded = true;
             Properties.Settings.Default.Save();
 
+        }
+
+        internal bool IsAllLoaded()
+        {
+            bool isAllCachedToMemory = AssetExtractor.SaveToMemory && (AssetExtractor.CachedBackgrounds.Count == 12 && AssetExtractor.CachedSprites.Count == (352 + 11) && AssetExtractor.CachedMusic.Count == 128);
+            bool isAllCachedToFiles = !AssetExtractor.SaveToMemory && (Directory.GetFiles(AssetExtractor.BackgroundDirectory).Length == 12 && Directory.GetFiles(AssetExtractor.SpriteDirectory).Length == (352 + 11) && Directory.GetFiles(AssetExtractor.AudioDirectory).Length == 128);
+            return isAllCachedToMemory || isAllCachedToFiles;
         }
         private void CreateNewDirectoryIfNull()
         {

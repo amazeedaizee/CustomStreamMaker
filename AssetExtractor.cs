@@ -120,7 +120,9 @@ namespace CustomStreamMaker
                 try
                 {
                     var file = File.ReadAllBytes(SpriteDirectory + @"\" + bgName);
-                    image = TextureConverter(file, 348, 227);
+                    if (ThatOneLongListOfAnimationsOriginallyInTheGame.darkAnims.Contains(bgName))
+                        image = TextureConverter(file, 518, 389);
+                    else image = TextureConverter(file, 348, 227);
                 }
                 catch
                 {
@@ -418,7 +420,7 @@ namespace CustomStreamMaker
                     }
                 }
             }
-            if (Directory.GetFiles(SpriteDirectory).Length < 352)
+            if (Directory.GetFiles(SpriteDirectory).Length < (352 + 11))
                 GetMissingAssetsFromDefault();
 
             void GetMissingAssetsFromDefault()
@@ -438,19 +440,19 @@ namespace CustomStreamMaker
                 {
                     var animName = "";
                     var tex = am.GetBaseField(assetInst, texInfo);
-
+                    if (!tex["m_Name"].AsString.Contains("stream_ame_drag")) continue;
                     var tf = TextureFile.ReadTextureFile(tex);
                     var texDat = tf.GetTextureData(assetInst);
                     var dataLocation = tex["m_StreamData"][0].AsInt;
                     if (dataLocation == 17982288 || dataLocation == 24249328)
                         animName = "stream_ame_drag_a";
-                    if (dataLocation == 167063456 || dataLocation == 236309168)
+                    if (dataLocation == 167063456 || dataLocation == 236309168 || dataLocation == 236593392)
                         animName = "stream_ame_drag_b";
-                    if (dataLocation == 78068800 || dataLocation == 78068928)
+                    if (dataLocation == 78068800 || dataLocation == 78068928 || dataLocation == 78335168)
                         animName = "stream_ame_drag_c";
                     if (dataLocation == 7705732 || dataLocation == 3293888)
                         animName = "stream_ame_drag_d";
-                    if (dataLocation == 249505492 || dataLocation == 157852960)
+                    if (dataLocation == 249505492 || dataLocation == 157852960 || dataLocation == 158128992)
                         animName = "stream_ame_drag_g";
                     if (animName == "")
                         continue;

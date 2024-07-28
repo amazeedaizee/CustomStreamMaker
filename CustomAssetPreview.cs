@@ -132,12 +132,17 @@ namespace CustomStreamMaker
             CustomAsset selectedAsset = assetList.Find(a => a.filePath == item.SubItems[2].Text
                                                        && a.fileName == item.SubItems[1].Text
                                                        && a.customAssetType == (CustomAssetType)Enum.Parse(typeof(CustomAssetType), item.SubItems[0].Text));
-            if (selectedAsset.customAssetType == CustomAssetType.Background)
+            if (selectedAsset != null)
             {
-                CustomAssetsPreviewPic.Image = AssetExtractor.GetCachedBackground(selectedAsset.fileName);
+                if (selectedAsset.customAssetType == CustomAssetType.Background)
+                {
+                    CustomAssetsPreviewPic.Image = AssetExtractor.GetCachedBackground(selectedAsset.fileName);
+                }
+                else CustomAssetsPreviewPic.Image = AssetExtractor.GetCachedSprite(selectedAsset.fileName);
+                currentPreview = selectedAsset;
             }
-            else CustomAssetsPreviewPic.Image = AssetExtractor.GetCachedSprite(selectedAsset.fileName);
-            currentPreview = selectedAsset;
+            else { currentPreview = null; }
+
         }
 
         private void CustomAssetsListView_KeyDown(object sender, KeyEventArgs e)

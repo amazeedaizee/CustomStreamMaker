@@ -52,6 +52,8 @@ namespace CustomStreamMaker
 
         public List<PlayingObject> PlayingList = new();
 
+        public bool hasDarkInterface = false;
+
         public StreamSettings() { }
     }
 }

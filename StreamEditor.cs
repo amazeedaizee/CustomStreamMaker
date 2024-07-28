@@ -103,12 +103,12 @@ namespace CustomStreamMaker
             KAngelDialogue_Group.Location = new Point(799, 78);
             HateComment_Group.Location = new Point(799, 248);
             KAnim_React_Group.Location = new Point(799, 78);
-            if (!Properties.Settings.Default.IsAssetsLoaded)
+            if (!(Properties.Settings.Default.IsAssetsLoaded && loadAssets.IsAllLoaded()))
                 loadAssets.ShowDialog();
+            else loadAssets.Dispose();
             ChangeVisibilityForPlayingObjEditors();
             InitializeLists();
             InitializeDefaultFields();
-
             SetStreamLoaderVisibility();
             StreamPlayingList.ClearSelection();
             CustomAssetExtractor.LoadCustomAssets();
@@ -1372,7 +1372,14 @@ namespace CustomStreamMaker
                         var newTreeData = JsonConvert.DeserializeObject<StreamSettings>(importedTreeData, jsonSettings);
                         savedSettings = JsonConvert.DeserializeObject<StreamSettings>(importedTreeData, jsonSettings);
                         settings = newTreeData;
-                        CustomAssetExtractor.CheckForMissingFilesInSettings(ref settings);
+                        CustomAssetExtractor.CheckIfMissingFilesInSettings(ref settings, out bool hasChangedPaths);
+                        if (hasChangedPaths)
+                        {
+                            playingListChanged = hasChangedPaths;
+                            MessageBox.Show("Your stream has slightly been modified due to changes in your custom assets.", "Note", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                        }
+
                         _currentFile = openNsoStream.FileName;
                         _undoHistory.Clear();
                         _redoHistory.Clear();
@@ -1383,7 +1390,11 @@ namespace CustomStreamMaker
                         return true;
                     }
                 }
-                catch { MessageBox.Show("Could not open JSON file, either the JSON file is invalid or the JSON file does not represent a Custom Stream.", "Could not read JSON file", MessageBoxButtons.OK, MessageBoxIcon.Error); }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.ToString());
+                    MessageBox.Show("Could not open JSON file, either the JSON file is invalid or the JSON file does not represent a Custom Stream.", "Could not read JSON file", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
             return false;
         }
@@ -1915,6 +1926,10 @@ namespace CustomStreamMaker
                 return false;
             if (savedSettings.hasEndScreen != settings.hasEndScreen)
                 return false;
+            if (savedSettings.CustomEndScreenPath != settings.CustomEndScreenPath)
+                return false;
+            if (savedSettings.hasDarkInterface != settings.hasDarkInterface)
+                return false;
             return true;
         }
 
@@ -2151,7 +2166,7 @@ namespace CustomStreamMaker
             if (!CustomAssetExtractor.customAssets.Exists(a => a.filePath == "" || a.filePath.Contains("?")))
                 return;
             CustomAssetExtractor.CheckForMissingFilesAtStart();
-            CustomAssetExtractor.CheckForMissingFilesInSettings(ref settings);
+            CustomAssetExtractor.CheckIfMissingFilesInSettings(ref settings, out var check);
         }
     }
 }

@@ -33,6 +33,7 @@
             this.IsDarkAngelIntro_Check = new System.Windows.Forms.CheckBox();
             this.HasIntro_Check = new System.Windows.Forms.CheckBox();
             this.StreamInterface_Group = new System.Windows.Forms.GroupBox();
+            this.DarkStream_Check = new System.Windows.Forms.CheckBox();
             this.CustomDay_Numeric = new System.Windows.Forms.NumericUpDown();
             this.CustomFollowers_Numeric = new System.Windows.Forms.NumericUpDown();
             this.CustomDay_Check = new System.Windows.Forms.CheckBox();
@@ -46,8 +47,8 @@
             this.HasCustomEndScreen_Check = new System.Windows.Forms.CheckBox();
             this.HasEndScreen_Check = new System.Windows.Forms.CheckBox();
             this.Chair_Group = new System.Windows.Forms.GroupBox();
-            this.GameChair_Checked = new System.Windows.Forms.CheckBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.GameChair_Checked = new System.Windows.Forms.CheckBox();
             this.StreamIntro_Group.SuspendLayout();
             this.StreamInterface_Group.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.CustomDay_Numeric)).BeginInit();
@@ -89,23 +90,36 @@
             this.HasIntro_Check.Text = "Open With Stream Transformation";
             this.HasIntro_Check.UseVisualStyleBackColor = true;
             this.HasIntro_Check.CheckedChanged += new System.EventHandler(this.HasIntro_Check_CheckedChanged);
+            this.HasIntro_Check.EnabledChanged += new System.EventHandler(this.HasIntro_Check_EnabledChanged);
             // 
             // StreamInterface_Group
             // 
+            this.StreamInterface_Group.Controls.Add(this.DarkStream_Check);
             this.StreamInterface_Group.Controls.Add(this.CustomDay_Numeric);
             this.StreamInterface_Group.Controls.Add(this.CustomFollowers_Numeric);
             this.StreamInterface_Group.Controls.Add(this.CustomDay_Check);
             this.StreamInterface_Group.Controls.Add(this.HasCustomFollowers_Check);
             this.StreamInterface_Group.Location = new System.Drawing.Point(13, 103);
             this.StreamInterface_Group.Name = "StreamInterface_Group";
-            this.StreamInterface_Group.Size = new System.Drawing.Size(305, 89);
+            this.StreamInterface_Group.Size = new System.Drawing.Size(305, 124);
             this.StreamInterface_Group.TabIndex = 0;
             this.StreamInterface_Group.TabStop = false;
             this.StreamInterface_Group.Text = "Stream Interface";
             // 
+            // DarkStream_Check
+            // 
+            this.DarkStream_Check.AutoSize = true;
+            this.DarkStream_Check.Location = new System.Drawing.Point(9, 28);
+            this.DarkStream_Check.Name = "DarkStream_Check";
+            this.DarkStream_Check.Size = new System.Drawing.Size(152, 17);
+            this.DarkStream_Check.TabIndex = 6;
+            this.DarkStream_Check.Text = "Use Dark Stream Interface";
+            this.DarkStream_Check.UseVisualStyleBackColor = true;
+            this.DarkStream_Check.CheckedChanged += new System.EventHandler(this.DarkStream_Check_CheckedChanged);
+            // 
             // CustomDay_Numeric
             // 
-            this.CustomDay_Numeric.Location = new System.Drawing.Point(172, 28);
+            this.CustomDay_Numeric.Location = new System.Drawing.Point(172, 64);
             this.CustomDay_Numeric.Maximum = new decimal(new int[] {
             30,
             0,
@@ -128,7 +142,7 @@
             // 
             // CustomFollowers_Numeric
             // 
-            this.CustomFollowers_Numeric.Location = new System.Drawing.Point(172, 54);
+            this.CustomFollowers_Numeric.Location = new System.Drawing.Point(172, 90);
             this.CustomFollowers_Numeric.Maximum = new decimal(new int[] {
             10000000,
             0,
@@ -142,7 +156,7 @@
             // CustomDay_Check
             // 
             this.CustomDay_Check.AutoSize = true;
-            this.CustomDay_Check.Location = new System.Drawing.Point(9, 29);
+            this.CustomDay_Check.Location = new System.Drawing.Point(9, 65);
             this.CustomDay_Check.Name = "CustomDay_Check";
             this.CustomDay_Check.Size = new System.Drawing.Size(108, 17);
             this.CustomDay_Check.TabIndex = 2;
@@ -153,7 +167,7 @@
             // HasCustomFollowers_Check
             // 
             this.HasCustomFollowers_Check.AutoSize = true;
-            this.HasCustomFollowers_Check.Location = new System.Drawing.Point(9, 55);
+            this.HasCustomFollowers_Check.Location = new System.Drawing.Point(9, 91);
             this.HasCustomFollowers_Check.Name = "HasCustomFollowers_Check";
             this.HasCustomFollowers_Check.Size = new System.Drawing.Size(156, 17);
             this.HasCustomFollowers_Check.TabIndex = 4;
@@ -165,7 +179,7 @@
             // 
             this.GameBorders_Group.Controls.Add(this.RemoveBorders_Check);
             this.GameBorders_Group.Controls.Add(this.InvertColors_Check);
-            this.GameBorders_Group.Location = new System.Drawing.Point(13, 282);
+            this.GameBorders_Group.Location = new System.Drawing.Point(13, 313);
             this.GameBorders_Group.Name = "GameBorders_Group";
             this.GameBorders_Group.Size = new System.Drawing.Size(305, 86);
             this.GameBorders_Group.TabIndex = 0;
@@ -200,7 +214,7 @@
             this.StreamEnd_Group.Controls.Add(this.CustomEndScreen_Text);
             this.StreamEnd_Group.Controls.Add(this.HasCustomEndScreen_Check);
             this.StreamEnd_Group.Controls.Add(this.HasEndScreen_Check);
-            this.StreamEnd_Group.Location = new System.Drawing.Point(13, 379);
+            this.StreamEnd_Group.Location = new System.Drawing.Point(13, 405);
             this.StreamEnd_Group.Name = "StreamEnd_Group";
             this.StreamEnd_Group.Size = new System.Drawing.Size(305, 106);
             this.StreamEnd_Group.TabIndex = 0;
@@ -248,17 +262,28 @@
             this.HasEndScreen_Check.Text = "Has End Screen";
             this.HasEndScreen_Check.UseVisualStyleBackColor = true;
             this.HasEndScreen_Check.CheckedChanged += new System.EventHandler(this.HasEndScreen_Check_CheckedChanged);
+            this.HasEndScreen_Check.EnabledChanged += new System.EventHandler(this.HasEndScreen_Check_EnabledChanged);
             // 
             // Chair_Group
             // 
             this.Chair_Group.Controls.Add(this.label1);
             this.Chair_Group.Controls.Add(this.GameChair_Checked);
-            this.Chair_Group.Location = new System.Drawing.Point(12, 200);
+            this.Chair_Group.Location = new System.Drawing.Point(12, 235);
             this.Chair_Group.Name = "Chair_Group";
             this.Chair_Group.Size = new System.Drawing.Size(305, 72);
             this.Chair_Group.TabIndex = 0;
             this.Chair_Group.TabStop = false;
             this.Chair_Group.Text = "Stream Chair";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.label1.Location = new System.Drawing.Point(11, 46);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(191, 13);
+            this.label1.TabIndex = 7;
+            this.label1.Text = "* Only applicable to some backgrounds";
             // 
             // GameChair_Checked
             // 
@@ -273,21 +298,11 @@
             this.GameChair_Checked.UseVisualStyleBackColor = true;
             this.GameChair_Checked.CheckedChanged += new System.EventHandler(this.GameChair_Checked_CheckedChanged);
             // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.label1.Location = new System.Drawing.Point(11, 46);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(191, 13);
-            this.label1.TabIndex = 7;
-            this.label1.Text = "* Only applicable to some backgrounds";
-            // 
             // StreamAdvancedOptions
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(330, 502);
+            this.ClientSize = new System.Drawing.Size(330, 529);
             this.Controls.Add(this.Chair_Group);
             this.Controls.Add(this.GameBorders_Group);
             this.Controls.Add(this.StreamInterface_Group);
@@ -338,5 +353,6 @@
         private System.Windows.Forms.GroupBox Chair_Group;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.CheckBox GameChair_Checked;
+        private System.Windows.Forms.CheckBox DarkStream_Check;
     }
 }
