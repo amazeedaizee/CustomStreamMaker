@@ -150,7 +150,7 @@
             // SpritePreview
             // 
             this.SpritePreview.BackColor = System.Drawing.SystemColors.Control;
-            this.SpritePreview.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.SpritePreview.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.SpritePreview.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.SpritePreview.Location = new System.Drawing.Point(12, 27);
             this.SpritePreview.Name = "SpritePreview";
