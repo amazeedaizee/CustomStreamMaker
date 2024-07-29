@@ -187,6 +187,8 @@ namespace CustomStreamMaker
         private void HasEndScreen_Check_EnabledChanged(object sender, EventArgs e)
         {
             HasCustomEndScreen_Check.Enabled = HasEndScreen_Check.Enabled;
+            CustomEndScreen_Text.Enabled = HasCustomEndScreen_Check.Enabled;
+            OpenEndScreenImg_Button.Enabled = HasCustomEndScreen_Check.Enabled;
         }
     }
 }

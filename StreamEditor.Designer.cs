@@ -80,6 +80,8 @@
             this.moveSelectionDownToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.assetsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.viewCustomAssetsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator8 = new System.Windows.Forms.ToolStripSeparator();
+            this.fixAnyMissingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.createBackgroundFromImageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator10 = new System.Windows.Forms.ToolStripSeparator();
@@ -87,7 +89,6 @@
             this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
             this.createAnimationFromAssetBundlelz4ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.createAnimationFromAssetBundlelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator8 = new System.Windows.Forms.ToolStripSeparator();
             this.createAnimationFromAddressableBundlelz4ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.createAnimationFromAddressableBundlelzmaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator9 = new System.Windows.Forms.ToolStripSeparator();
@@ -131,7 +132,6 @@
             this.MoreOptions_LInkLabel = new System.Windows.Forms.LinkLabel();
             this.InsertBelow_Button = new System.Windows.Forms.Button();
             this.InsertAbove_Button = new System.Windows.Forms.Button();
-            this.fixAnyMissingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.SpritePreview)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.EffectIntensity_Trackbar)).BeginInit();
             this.ChatComment_Group.SuspendLayout();
@@ -155,7 +155,7 @@
             this.SpritePreview.Location = new System.Drawing.Point(12, 27);
             this.SpritePreview.Name = "SpritePreview";
             this.SpritePreview.Size = new System.Drawing.Size(348, 227);
-            this.SpritePreview.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.SpritePreview.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.SpritePreview.TabIndex = 1;
             this.SpritePreview.TabStop = false;
             // 
@@ -626,6 +626,18 @@
             this.viewCustomAssetsToolStripMenuItem.Text = "View Custom Assets";
             this.viewCustomAssetsToolStripMenuItem.Click += new System.EventHandler(this.viewCustomAssetsToolStripMenuItem_Click);
             // 
+            // toolStripSeparator8
+            // 
+            this.toolStripSeparator8.Name = "toolStripSeparator8";
+            this.toolStripSeparator8.Size = new System.Drawing.Size(364, 6);
+            // 
+            // fixAnyMissingToolStripMenuItem
+            // 
+            this.fixAnyMissingToolStripMenuItem.Name = "fixAnyMissingToolStripMenuItem";
+            this.fixAnyMissingToolStripMenuItem.Size = new System.Drawing.Size(367, 22);
+            this.fixAnyMissingToolStripMenuItem.Text = "Fix Any Missing Custom Assets";
+            this.fixAnyMissingToolStripMenuItem.Click += new System.EventHandler(this.fixAnyMissingToolStripMenuItem_Click);
+            // 
             // toolStripSeparator3
             // 
             this.toolStripSeparator3.Name = "toolStripSeparator3";
@@ -671,11 +683,6 @@
             this.createAnimationFromAssetBundlelToolStripMenuItem.Text = "Import Animation Clip From Asset Bundle (lzma)";
             this.createAnimationFromAssetBundlelToolStripMenuItem.Visible = false;
             this.createAnimationFromAssetBundlelToolStripMenuItem.Click += new System.EventHandler(this.createAnimationFromAssetBundlelToolStripMenuItem_Click);
-            // 
-            // toolStripSeparator8
-            // 
-            this.toolStripSeparator8.Name = "toolStripSeparator8";
-            this.toolStripSeparator8.Size = new System.Drawing.Size(364, 6);
             // 
             // createAnimationFromAddressableBundlelz4ToolStripMenuItem
             // 
@@ -1128,13 +1135,6 @@
             this.InsertAbove_Button.UseVisualStyleBackColor = true;
             this.InsertAbove_Button.Visible = false;
             this.InsertAbove_Button.Click += new System.EventHandler(this.InsertAbove_Button_Click);
-            // 
-            // fixAnyMissingToolStripMenuItem
-            // 
-            this.fixAnyMissingToolStripMenuItem.Name = "fixAnyMissingToolStripMenuItem";
-            this.fixAnyMissingToolStripMenuItem.Size = new System.Drawing.Size(367, 22);
-            this.fixAnyMissingToolStripMenuItem.Text = "Fix Any Missing Custom Assets";
-            this.fixAnyMissingToolStripMenuItem.Click += new System.EventHandler(this.fixAnyMissingToolStripMenuItem_Click);
             // 
             // StreamEditor
             // 
