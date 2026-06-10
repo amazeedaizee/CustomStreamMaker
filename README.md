@@ -1,3 +1,4 @@
+### [A small update on my mods](https://gist.github.com/amazeedaizee/b065103e312e6339ddce15854445dc27)
 # Custom Stream Maker
 
 ![2023-08-20 (16)](https://github.com/amazeedaizee/CustomStreamMaker/assets/131136866/76f573b3-7881-4f57-9efc-9ae4649d4277)
@@ -49,6 +50,12 @@ For creating image previews from the game, and from any custom images/sprites up
 **AssetExtractor.cs**, and **CustomAssetExtractor.cs** are licensed under the MIT License. You can find these licenses in their respective files. 
 
 The rest of the code in this repository is All Rights Reserved (c) 2023 amazeedaizee.
+
+## Disclosure
+
+This mod was unfortunately created using Visual Studio 2022 with Intellicode (Ai-powered autocomplete)
+
+[More info](https://gist.github.com/amazeedaizee/b065103e312e6339ddce15854445dc27)
 
 ## Other 
 
