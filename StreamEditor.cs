@@ -100,6 +100,7 @@ namespace CustomStreamMaker
             PlaySE_Group.Location = new Point(799, 78);
             PlayMusic_Group.Location = new Point(799, 78);
             BorderEffect_Group.Location = new Point(799, 78);
+            VisualEffect_Group.Location = new Point(799, 78);
             KAngelDialogue_Group.Location = new Point(799, 78);
             HateComment_Group.Location = new Point(799, 248);
             KAnim_React_Group.Location = new Point(799, 78);
@@ -316,6 +317,10 @@ namespace CustomStreamMaker
             _currentSE = "SE_Tetehen";
             StartingEffect_List.Text = "Kenjo";
             EffectIntensity_Trackbar.Value = 0;
+            VisualEffect_List.Text = "Kenjo";
+            VisualEffect_IntensityTrack.Enabled = false;
+            VisualEffect_IntensityTrack.Value = 1;
+            VisualEffect_CalmRadio.Checked = false;
             BorderEffect_In_Radio.Checked = true;
             BorderEffect_List.Text = "None";
             StartingBackground_List.Text = "bg_stream";
@@ -390,6 +395,17 @@ namespace CustomStreamMaker
             IntensityNum.Text = settings.EffectIntensity.ToString();
         }
 
+        private void InitializeVisualEffectIntensity()
+        {
+            if (!VisualEffect_IntensityTrack.Enabled)
+            {
+                VisualEffect_IntensityTrack.Text = "0";
+                return;
+            }
+            VisualEffect_IntensityNum.Text = (VisualEffect_IntensityTrack.Value / 100f).ToString();
+        }
+
+
         private void EnableSuperChatReply()
         {
             SuperChatReply_Group.Enabled = IsSuperChat_Check.Checked;
@@ -440,6 +456,7 @@ namespace CustomStreamMaker
                     PlayMusic_Group.Visible = false;
                     BorderEffect_Group.Visible = false;
                     KAnim_React_Group.Visible = false;
+                    VisualEffect_Group.Visible = false;
                     EnableHateCallout();
                     SetNewSpritePreview(_currentKAnim);
                     return;
@@ -452,6 +469,7 @@ namespace CustomStreamMaker
                     PlayMusic_Group.Visible = false;
                     BorderEffect_Group.Visible = false;
                     KAnim_React_Group.Visible = false;
+                    VisualEffect_Group.Visible = false;
                     EnableSuperChatReply();
                     return;
                 case 2:
@@ -463,6 +481,7 @@ namespace CustomStreamMaker
                     PlayMusic_Group.Visible = false;
                     BorderEffect_Group.Visible = false;
                     KAnim_React_Group.Visible = false;
+                    VisualEffect_Group.Visible = false;
                     return;
                 case 3:
                     KAngelDialogue_Group.Visible = false;
@@ -473,6 +492,7 @@ namespace CustomStreamMaker
                     PlayMusic_Group.Visible = true;
                     BorderEffect_Group.Visible = false;
                     KAnim_React_Group.Visible = false;
+                    VisualEffect_Group.Visible = false;
                     return;
                 case 4:
                     KAngelDialogue_Group.Visible = false;
@@ -483,11 +503,22 @@ namespace CustomStreamMaker
                     PlayMusic_Group.Visible = false;
                     BorderEffect_Group.Visible = true;
                     KAnim_React_Group.Visible = false;
+                    VisualEffect_Group.Visible = false;
                     return;
                 case 11:
                     KAnim_React_Group.Visible = true;
                     CheckIfReactionAnimExists();
                     break;
+                case 12:
+                    KAngelDialogue_Group.Visible = false;
+                    HateComment_Group.Visible = false;
+                    ChatComment_Group.Visible = false;
+                    SuperChatReply_Group.Visible = false;
+                    PlaySE_Group.Visible = false;
+                    PlayMusic_Group.Visible = false;
+                    BorderEffect_Group.Visible = false;
+                    VisualEffect_Group.Visible = true;
+                    return;
                 default:
                     KAnim_React_Group.Visible = false;
                     break;
@@ -499,6 +530,7 @@ namespace CustomStreamMaker
             PlaySE_Group.Visible = false;
             PlayMusic_Group.Visible = false;
             BorderEffect_Group.Visible = false;
+            VisualEffect_Group.Visible = false;
         }
 
         private void PlayingType_List_SelectedIndexChanged(object sender, EventArgs e)
@@ -641,7 +673,6 @@ namespace CustomStreamMaker
         {
             settings.StartingEffect = (EffectType)Enum.Parse(typeof(EffectType), (string)StartingEffect_List.SelectedItem);
             InitializeEnabledTrackbar();
-            InitializeEffectIntensity();
             ChangeFileLabelIfUnsaved();
         }
 
@@ -722,6 +753,9 @@ namespace CustomStreamMaker
                     playObj = new ChatGeneral(PlayingType.ReadSuperChats);
                     CheckIfReactionAnimExists();
                     AddSaveToPlayingList_Button.Enabled = false;
+                    break;
+                case 12:
+                    playObj = new PlayVisEffect((EffectType)VisualEffect_List.SelectedIndex, (VisualEffect_IntensityTrack.Value / 100f), VisualEffect_CalmRadio.Checked);
                     break;
             }
             if (isInsertNew)
@@ -806,6 +840,8 @@ namespace CustomStreamMaker
                     return "Delete All (Normal) Chat Comments";
                 case PlayingType.ReadSuperChats:
                     return "Start Reading Chosen Super Chats";
+                case PlayingType.PlayVisEffect:
+                    return "Visual Effect";
                 default:
                     return "";
             }
@@ -844,6 +880,13 @@ namespace CustomStreamMaker
                     return $"Playing Border Effect: {effect.BorderEffect}; \nin state: {effect.BorderEffectType}";
                 case PlayingType.ReadSuperChats:
                     return $"Reading with animation: {settings.ReactionAnimation}";
+                case PlayingType.PlayVisEffect:
+                    var visual = playingObject as PlayVisEffect;
+                    if (visual.Effect == EffectType.Kenjo)
+                    {
+                        return $"Stopping all Visual Effects{(visual.IsCalm ? " gradually" : "")} (Kenjo)";
+                    }
+                    return $"Playing Visual Effect: {visual.Effect} at {visual.Weight} intensity{(visual.IsCalm ? " gradually" : "")}";
                 default: return "-----";
 
 
@@ -1072,6 +1115,9 @@ namespace CustomStreamMaker
                     PlayingType_List.SelectedIndex = 11;
                     SetNewSpritePreview(settings.ReactionAnimation);
                     CheckIfReactionAnimExists();
+                    return;
+                case PlayingType.PlayVisEffect:
+                    PlayingType_List.SelectedIndex = 12;
                     return;
                 default:
                     PlayingType_List.SelectedIndex = -1;
@@ -1511,8 +1557,9 @@ namespace CustomStreamMaker
             var isChatDupeExists = data.GetDataPresent(typeof(ChatSays));
             var isAudioDupeExists = data.GetDataPresent(typeof(PlaySound));
             var isEffectDupeExists = data.GetDataPresent(typeof(PlayEffect));
+            var isVisEffectDupeExists = data.GetDataPresent(typeof(PlayVisEffect));
             var isGenDupeExists = data.GetDataPresent(typeof(ChatGeneral));
-            return isKDupeExists || isKCalloutDupeExists || isChatDupeExists || isAudioDupeExists || isEffectDupeExists || isGenDupeExists;
+            return isKDupeExists || isKCalloutDupeExists || isChatDupeExists || isAudioDupeExists || isEffectDupeExists || isGenDupeExists || isVisEffectDupeExists;
         }
 
         private void CopyExistingPlayingObj()
@@ -1533,6 +1580,7 @@ namespace CustomStreamMaker
             var isChatDupeExists = data.GetDataPresent(typeof(ChatSays));
             var isAudioDupeExists = data.GetDataPresent(typeof(PlaySound));
             var isEffectDupeExists = data.GetDataPresent(typeof(PlayEffect));
+            var isVisEffectDupeExists = data.GetDataPresent(typeof(PlayVisEffect));
             var isGenDupeExists = data.GetDataPresent(typeof(ChatGeneral));
             if (isKDupeExists)
                 return data.GetData(typeof(KAngelSays)) as PlayingObject;
@@ -1544,8 +1592,11 @@ namespace CustomStreamMaker
                 return data.GetData(typeof(PlaySound)) as PlayingObject;
             else if (isEffectDupeExists)
                 return data.GetData(typeof(PlayEffect)) as PlayingObject;
+            else if (isVisEffectDupeExists)
+                return data.GetData(typeof(PlayVisEffect)) as PlayingObject;
             else if (isGenDupeExists)
                 return data.GetData(typeof(ChatGeneral)) as PlayingObject;
+
             return null;
         }
 
@@ -2170,6 +2221,24 @@ namespace CustomStreamMaker
                 return;
             CustomAssetExtractor.CheckForMissingFilesAtStart();
             CustomAssetExtractor.CheckIfMissingFilesInSettings(ref settings, out var check);
+        }
+
+        private void radioButton2_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void VisualEffect_List_SelectedIndexChanged(object sender, EventArgs e)
+        
+        {
+
+            VisualEffect_IntensityTrack.Enabled = VisualEffect_List.SelectedText != "Kenjo";
+            InitializeVisualEffectIntensity();
+        }
+
+        private void VisualEffect_IntensityTrack_Scroll(object sender, EventArgs e)
+        {
+            InitializeVisualEffectIntensity();
         }
     }
 }

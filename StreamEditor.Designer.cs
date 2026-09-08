@@ -132,6 +132,12 @@
             this.MoreOptions_LInkLabel = new System.Windows.Forms.LinkLabel();
             this.InsertBelow_Button = new System.Windows.Forms.Button();
             this.InsertAbove_Button = new System.Windows.Forms.Button();
+            this.VisualEffect_Group = new System.Windows.Forms.GroupBox();
+            this.VisualEffect_CalmRadio = new System.Windows.Forms.RadioButton();
+            this.VisualEffect_List = new System.Windows.Forms.ComboBox();
+            this.VisualEffect_WeightLabel = new System.Windows.Forms.Label();
+            this.VisualEffect_IntensityTrack = new System.Windows.Forms.TrackBar();
+            this.VisualEffect_IntensityNum = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.SpritePreview)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.EffectIntensity_Trackbar)).BeginInit();
             this.ChatComment_Group.SuspendLayout();
@@ -145,6 +151,8 @@
             this.PlayMusic_Group.SuspendLayout();
             this.HateComment_Group.SuspendLayout();
             this.KAnim_React_Group.SuspendLayout();
+            this.VisualEffect_Group.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.VisualEffect_IntensityTrack)).BeginInit();
             this.SuspendLayout();
             // 
             // SpritePreview
@@ -262,9 +270,9 @@
             this.StartingEffect_Label.AutoSize = true;
             this.StartingEffect_Label.Location = new System.Drawing.Point(9, 480);
             this.StartingEffect_Label.Name = "StartingEffect_Label";
-            this.StartingEffect_Label.Size = new System.Drawing.Size(74, 13);
+            this.StartingEffect_Label.Size = new System.Drawing.Size(105, 13);
             this.StartingEffect_Label.TabIndex = 4;
-            this.StartingEffect_Label.Text = "Starting Effect";
+            this.StartingEffect_Label.Text = "Starting Visual Effect";
             // 
             // EffectIntensity_Trackbar
             // 
@@ -338,7 +346,8 @@
             "Rainbow Super Chats",
             "Delete Last Comment",
             "Delete All Comments",
-            "Start Reading Super Chats"});
+            "Start Reading Super Chats",
+            "Play Visual Effect"});
             this.PlayingType_List.Location = new System.Drawing.Point(799, 51);
             this.PlayingType_List.Name = "PlayingType_List";
             this.PlayingType_List.Size = new System.Drawing.Size(263, 21);
@@ -723,14 +732,14 @@
             // loadCurrentStreamToolStripMenuItem
             // 
             this.loadCurrentStreamToolStripMenuItem.Name = "loadCurrentStreamToolStripMenuItem";
-            this.loadCurrentStreamToolStripMenuItem.Size = new System.Drawing.Size(227, 22);
+            this.loadCurrentStreamToolStripMenuItem.Size = new System.Drawing.Size(228, 22);
             this.loadCurrentStreamToolStripMenuItem.Text = "Set Current Stream To Loader";
             this.loadCurrentStreamToolStripMenuItem.Click += new System.EventHandler(this.loadCurrentStreamToolStripMenuItem_Click);
             // 
             // loadSavedStreamToolStripMenuItem
             // 
             this.loadSavedStreamToolStripMenuItem.Name = "loadSavedStreamToolStripMenuItem";
-            this.loadSavedStreamToolStripMenuItem.Size = new System.Drawing.Size(227, 22);
+            this.loadSavedStreamToolStripMenuItem.Size = new System.Drawing.Size(228, 22);
             this.loadSavedStreamToolStripMenuItem.Text = "Set Saved Stream To Loader...";
             this.loadSavedStreamToolStripMenuItem.Click += new System.EventHandler(this.loadSavedStreamToolStripMenuItem_Click);
             // 
@@ -929,7 +938,7 @@
             this.BorderEffect_Group.Controls.Add(this.BorderEffectOut_Radio);
             this.BorderEffect_Group.Controls.Add(this.BorderEffect_In_Radio);
             this.BorderEffect_Group.Controls.Add(this.BorderEffect_List);
-            this.BorderEffect_Group.Location = new System.Drawing.Point(13, 208);
+            this.BorderEffect_Group.Location = new System.Drawing.Point(27, 218);
             this.BorderEffect_Group.Name = "BorderEffect_Group";
             this.BorderEffect_Group.Size = new System.Drawing.Size(263, 110);
             this.BorderEffect_Group.TabIndex = 11;
@@ -1136,11 +1145,100 @@
             this.InsertAbove_Button.Visible = false;
             this.InsertAbove_Button.Click += new System.EventHandler(this.InsertAbove_Button_Click);
             // 
+            // VisualEffect_Group
+            // 
+            this.VisualEffect_Group.Controls.Add(this.VisualEffect_IntensityNum);
+            this.VisualEffect_Group.Controls.Add(this.VisualEffect_IntensityTrack);
+            this.VisualEffect_Group.Controls.Add(this.VisualEffect_WeightLabel);
+            this.VisualEffect_Group.Controls.Add(this.VisualEffect_CalmRadio);
+            this.VisualEffect_Group.Controls.Add(this.VisualEffect_List);
+            this.VisualEffect_Group.Location = new System.Drawing.Point(308, 47);
+            this.VisualEffect_Group.Name = "VisualEffect_Group";
+            this.VisualEffect_Group.Size = new System.Drawing.Size(263, 155);
+            this.VisualEffect_Group.TabIndex = 18;
+            this.VisualEffect_Group.TabStop = false;
+            this.VisualEffect_Group.Text = "Visual Effect";
+            // 
+            // VisualEffect_CalmRadio
+            // 
+            this.VisualEffect_CalmRadio.AutoSize = true;
+            this.VisualEffect_CalmRadio.Location = new System.Drawing.Point(11, 122);
+            this.VisualEffect_CalmRadio.Name = "VisualEffect_CalmRadio";
+            this.VisualEffect_CalmRadio.Size = new System.Drawing.Size(61, 17);
+            this.VisualEffect_CalmRadio.TabIndex = 15;
+            this.VisualEffect_CalmRadio.Text = "Fade In";
+            this.VisualEffect_CalmRadio.UseVisualStyleBackColor = true;
+            this.VisualEffect_CalmRadio.CheckedChanged += new System.EventHandler(this.radioButton2_CheckedChanged);
+            // 
+            // VisualEffect_List
+            // 
+            this.VisualEffect_List.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.VisualEffect_List.FormattingEnabled = true;
+            this.VisualEffect_List.Items.AddRange(new object[] {
+            "Psyche",
+            "WristCut",
+            "GoCrazy",
+            "OD",
+            "OD2",
+            "OD3",
+            "Weed",
+            "Kenjo",
+            "Noisy",
+            "Kyouizon",
+            "Bleeding",
+            "Gatagata",
+            "SatujinNoise",
+            "Anmaku",
+            "Otona",
+            "ChoosingComment",
+            "Invert",
+            "horror",
+            "Yugami",
+            "BloomLight",
+            "Kakusei",
+            "Powapowa"});
+            this.VisualEffect_List.Location = new System.Drawing.Point(6, 24);
+            this.VisualEffect_List.Name = "VisualEffect_List";
+            this.VisualEffect_List.Size = new System.Drawing.Size(251, 21);
+            this.VisualEffect_List.TabIndex = 12;
+            this.VisualEffect_List.SelectedIndexChanged += new System.EventHandler(this.VisualEffect_List_SelectedIndexChanged);
+            // 
+            // VisualEffect_WeightLabel
+            // 
+            this.VisualEffect_WeightLabel.AutoSize = true;
+            this.VisualEffect_WeightLabel.Location = new System.Drawing.Point(8, 55);
+            this.VisualEffect_WeightLabel.Name = "VisualEffect_WeightLabel";
+            this.VisualEffect_WeightLabel.Size = new System.Drawing.Size(46, 13);
+            this.VisualEffect_WeightLabel.TabIndex = 22;
+            this.VisualEffect_WeightLabel.Text = "Intensity";
+            // 
+            // VisualEffect_IntensityTrack
+            // 
+            this.VisualEffect_IntensityTrack.LargeChange = 20;
+            this.VisualEffect_IntensityTrack.Location = new System.Drawing.Point(6, 74);
+            this.VisualEffect_IntensityTrack.Maximum = 1000;
+            this.VisualEffect_IntensityTrack.Name = "VisualEffect_IntensityTrack";
+            this.VisualEffect_IntensityTrack.Size = new System.Drawing.Size(251, 45);
+            this.VisualEffect_IntensityTrack.SmallChange = 10;
+            this.VisualEffect_IntensityTrack.TabIndex = 22;
+            this.VisualEffect_IntensityTrack.Value = 1;
+            this.VisualEffect_IntensityTrack.Scroll += new System.EventHandler(this.VisualEffect_IntensityTrack_Scroll);
+            // 
+            // VisualEffect_IntensityNum
+            // 
+            this.VisualEffect_IntensityNum.Location = new System.Drawing.Point(211, 58);
+            this.VisualEffect_IntensityNum.Name = "VisualEffect_IntensityNum";
+            this.VisualEffect_IntensityNum.Size = new System.Drawing.Size(46, 13);
+            this.VisualEffect_IntensityNum.TabIndex = 22;
+            this.VisualEffect_IntensityNum.Text = "0";
+            this.VisualEffect_IntensityNum.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            // 
             // StreamEditor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1074, 561);
+            this.Controls.Add(this.VisualEffect_Group);
             this.Controls.Add(this.InsertAbove_Button);
             this.Controls.Add(this.InsertBelow_Button);
             this.Controls.Add(this.MoreOptions_LInkLabel);
@@ -1205,6 +1303,9 @@
             this.HateComment_Group.ResumeLayout(false);
             this.HateComment_Group.PerformLayout();
             this.KAnim_React_Group.ResumeLayout(false);
+            this.VisualEffect_Group.ResumeLayout(false);
+            this.VisualEffect_Group.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.VisualEffect_IntensityTrack)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1311,6 +1412,12 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator10;
         private System.Windows.Forms.ToolStripMenuItem importCachedAnimationClipsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem fixAnyMissingToolStripMenuItem;
+        private System.Windows.Forms.GroupBox VisualEffect_Group;
+        private System.Windows.Forms.RadioButton VisualEffect_CalmRadio;
+        private System.Windows.Forms.ComboBox VisualEffect_List;
+        private System.Windows.Forms.Label VisualEffect_IntensityNum;
+        private System.Windows.Forms.TrackBar VisualEffect_IntensityTrack;
+        private System.Windows.Forms.Label VisualEffect_WeightLabel;
     }
 }
 
