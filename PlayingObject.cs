@@ -2,6 +2,7 @@
 using ngov3;
 using System;
 using System.Collections.Generic;
+using System.Windows.Forms;
 
 namespace CustomStreamMaker
 {
@@ -21,7 +22,8 @@ namespace CustomStreamMaker
         ChatRainbow,
         ChatDelete,
         ChatDeleteAll,
-        ReadSuperChats
+        ReadSuperChats,
+        PlayVisEffect
     }
 
     public enum BorderEffectType
@@ -327,6 +329,34 @@ namespace CustomStreamMaker
             if ((int)playingType < 8)
                 throw new ArgumentOutOfRangeException(nameof(playingType) + " - This PlayingType is not supported for this class.");
             PlayingType = playingType;
+        }
+    }
+
+    [Serializable]
+    public class PlayVisEffect : PlayingObject
+    {
+        public EffectType Effect;
+        public double Weight;
+
+        public bool IsCalm;
+
+        public PlayVisEffect() { }
+
+        public PlayVisEffect(EffectType effect) : this(effect, 1.0, false)
+        {
+
+        }
+
+        public PlayVisEffect(EffectType effect, double weight) : this(effect,weight, false)
+        {
+
+        }
+
+        public PlayVisEffect(EffectType effect, double weight, bool isCalm)
+        {
+            Effect = effect;
+            Weight = effect == EffectType.Kenjo ? 0.0 : weight;
+            IsCalm = isCalm;
         }
     }
 }
