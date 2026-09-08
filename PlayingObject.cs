@@ -154,6 +154,11 @@ namespace CustomStreamMaker
                     effectDupe.ChangeEffectType(effectOriginal.BorderEffect, effectOriginal.BorderEffectType);
                     dupeObj = effectDupe;
                     break;
+                case PlayingType.PlayVisEffect:
+                    var visOriginal = obj as PlayVisEffect;
+                    var visDupe = new PlayVisEffect(visOriginal.Effect, visOriginal.Weight, visOriginal.IsCalm);
+                    dupeObj = visDupe;
+                    break;
                 default:
                     var genDupe = new ChatGeneral();
                     genDupe.ChangePlayingType(obj.PlayingType);
@@ -335,6 +340,7 @@ namespace CustomStreamMaker
     [Serializable]
     public class PlayVisEffect : PlayingObject
     {
+        public override PlayingType PlayingType { get => PlayingType.PlayVisEffect; }
         public EffectType Effect;
         public double Weight;
 
