@@ -259,7 +259,9 @@ namespace CustomStreamMaker
             }
             else StartingBackground_List.SelectedIndex = (int)settings.StartingBackground;
             StartingEffect_List.SelectedIndex = (int)settings.StartingEffect;
-            EffectIntensity_Trackbar.Value = (int)settings.EffectIntensity * 100;
+            InitializeEnabledTrackbar();
+            EffectIntensity_Trackbar.Value= (int)(settings.EffectIntensity*100f);
+            IntensityNum.Text = settings.EffectIntensity.ToString();
             switch (settings.ChatSettings)
             {
                 case StreamChatSettings.Normal:

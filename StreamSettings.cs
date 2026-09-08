@@ -29,7 +29,7 @@ namespace CustomStreamMaker
         public CustomAsset CustomBackground;
         public SoundType StartingMusic;
         public EffectType StartingEffect;
-        public float EffectIntensity;
+        public double EffectIntensity;
 
         public string ReactionAnimation;
 
