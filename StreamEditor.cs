@@ -1984,6 +1984,20 @@ namespace CustomStreamMaker
                 return false;
             if (savedSettings.hasDarkInterface != settings.hasDarkInterface)
                 return false;
+            if (savedSettings.hasATweet != settings.hasATweet)
+                return false;
+            if (savedSettings.aTweet != settings.aTweet)
+                return false;
+            if (savedSettings.aPic != settings.aPic)
+                return false;
+            if (savedSettings.hasKTweet != settings.hasKTweet)
+                return false;
+            if (savedSettings.kTweet != settings.kTweet)
+                return false;
+            if (savedSettings.kPic != settings.kPic)
+                return false;
+            if (savedSettings.tweetReps != settings.tweetReps)
+                return false;
             return true;
         }
 

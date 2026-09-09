@@ -133,11 +133,11 @@
             this.InsertBelow_Button = new System.Windows.Forms.Button();
             this.InsertAbove_Button = new System.Windows.Forms.Button();
             this.VisualEffect_Group = new System.Windows.Forms.GroupBox();
+            this.VisualEffect_IntensityNum = new System.Windows.Forms.Label();
+            this.VisualEffect_IntensityTrack = new System.Windows.Forms.TrackBar();
+            this.VisualEffect_WeightLabel = new System.Windows.Forms.Label();
             this.VisualEffect_CalmRadio = new System.Windows.Forms.RadioButton();
             this.VisualEffect_List = new System.Windows.Forms.ComboBox();
-            this.VisualEffect_WeightLabel = new System.Windows.Forms.Label();
-            this.VisualEffect_IntensityTrack = new System.Windows.Forms.TrackBar();
-            this.VisualEffect_IntensityNum = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.SpritePreview)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.EffectIntensity_Trackbar)).BeginInit();
             this.ChatComment_Group.SuspendLayout();
@@ -1159,6 +1159,36 @@
             this.VisualEffect_Group.TabStop = false;
             this.VisualEffect_Group.Text = "Visual Effect";
             // 
+            // VisualEffect_IntensityNum
+            // 
+            this.VisualEffect_IntensityNum.Location = new System.Drawing.Point(211, 58);
+            this.VisualEffect_IntensityNum.Name = "VisualEffect_IntensityNum";
+            this.VisualEffect_IntensityNum.Size = new System.Drawing.Size(46, 13);
+            this.VisualEffect_IntensityNum.TabIndex = 22;
+            this.VisualEffect_IntensityNum.Text = "0";
+            this.VisualEffect_IntensityNum.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            // 
+            // VisualEffect_IntensityTrack
+            // 
+            this.VisualEffect_IntensityTrack.LargeChange = 20;
+            this.VisualEffect_IntensityTrack.Location = new System.Drawing.Point(6, 74);
+            this.VisualEffect_IntensityTrack.Maximum = 1000;
+            this.VisualEffect_IntensityTrack.Name = "VisualEffect_IntensityTrack";
+            this.VisualEffect_IntensityTrack.Size = new System.Drawing.Size(251, 45);
+            this.VisualEffect_IntensityTrack.SmallChange = 10;
+            this.VisualEffect_IntensityTrack.TabIndex = 22;
+            this.VisualEffect_IntensityTrack.Value = 1;
+            this.VisualEffect_IntensityTrack.Scroll += new System.EventHandler(this.VisualEffect_IntensityTrack_Scroll);
+            // 
+            // VisualEffect_WeightLabel
+            // 
+            this.VisualEffect_WeightLabel.AutoSize = true;
+            this.VisualEffect_WeightLabel.Location = new System.Drawing.Point(8, 55);
+            this.VisualEffect_WeightLabel.Name = "VisualEffect_WeightLabel";
+            this.VisualEffect_WeightLabel.Size = new System.Drawing.Size(46, 13);
+            this.VisualEffect_WeightLabel.TabIndex = 22;
+            this.VisualEffect_WeightLabel.Text = "Intensity";
+            // 
             // VisualEffect_CalmRadio
             // 
             this.VisualEffect_CalmRadio.AutoSize = true;
@@ -1202,36 +1232,6 @@
             this.VisualEffect_List.Size = new System.Drawing.Size(251, 21);
             this.VisualEffect_List.TabIndex = 12;
             this.VisualEffect_List.SelectedIndexChanged += new System.EventHandler(this.VisualEffect_List_SelectedIndexChanged);
-            // 
-            // VisualEffect_WeightLabel
-            // 
-            this.VisualEffect_WeightLabel.AutoSize = true;
-            this.VisualEffect_WeightLabel.Location = new System.Drawing.Point(8, 55);
-            this.VisualEffect_WeightLabel.Name = "VisualEffect_WeightLabel";
-            this.VisualEffect_WeightLabel.Size = new System.Drawing.Size(46, 13);
-            this.VisualEffect_WeightLabel.TabIndex = 22;
-            this.VisualEffect_WeightLabel.Text = "Intensity";
-            // 
-            // VisualEffect_IntensityTrack
-            // 
-            this.VisualEffect_IntensityTrack.LargeChange = 20;
-            this.VisualEffect_IntensityTrack.Location = new System.Drawing.Point(6, 74);
-            this.VisualEffect_IntensityTrack.Maximum = 1000;
-            this.VisualEffect_IntensityTrack.Name = "VisualEffect_IntensityTrack";
-            this.VisualEffect_IntensityTrack.Size = new System.Drawing.Size(251, 45);
-            this.VisualEffect_IntensityTrack.SmallChange = 10;
-            this.VisualEffect_IntensityTrack.TabIndex = 22;
-            this.VisualEffect_IntensityTrack.Value = 1;
-            this.VisualEffect_IntensityTrack.Scroll += new System.EventHandler(this.VisualEffect_IntensityTrack_Scroll);
-            // 
-            // VisualEffect_IntensityNum
-            // 
-            this.VisualEffect_IntensityNum.Location = new System.Drawing.Point(211, 58);
-            this.VisualEffect_IntensityNum.Name = "VisualEffect_IntensityNum";
-            this.VisualEffect_IntensityNum.Size = new System.Drawing.Size(46, 13);
-            this.VisualEffect_IntensityNum.TabIndex = 22;
-            this.VisualEffect_IntensityNum.Text = "0";
-            this.VisualEffect_IntensityNum.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
             // StreamEditor
             // 
