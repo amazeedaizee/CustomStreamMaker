@@ -459,6 +459,7 @@ namespace CustomStreamMaker
                     VisualEffect_Group.Visible = false;
                     EnableHateCallout();
                     SetNewSpritePreview(_currentKAnim);
+                    enableEditButtons();
                     return;
                 case 1:
                     KAngelDialogue_Group.Visible = false;
@@ -470,6 +471,7 @@ namespace CustomStreamMaker
                     BorderEffect_Group.Visible = false;
                     KAnim_React_Group.Visible = false;
                     VisualEffect_Group.Visible = false;
+                    enableEditButtons();
                     EnableSuperChatReply();
                     return;
                 case 2:
@@ -482,6 +484,7 @@ namespace CustomStreamMaker
                     BorderEffect_Group.Visible = false;
                     KAnim_React_Group.Visible = false;
                     VisualEffect_Group.Visible = false;
+                    enableEditButtons();
                     return;
                 case 3:
                     KAngelDialogue_Group.Visible = false;
@@ -493,6 +496,7 @@ namespace CustomStreamMaker
                     BorderEffect_Group.Visible = false;
                     KAnim_React_Group.Visible = false;
                     VisualEffect_Group.Visible = false;
+                    enableEditButtons();
                     return;
                 case 4:
                     KAngelDialogue_Group.Visible = false;
@@ -504,6 +508,7 @@ namespace CustomStreamMaker
                     BorderEffect_Group.Visible = true;
                     KAnim_React_Group.Visible = false;
                     VisualEffect_Group.Visible = false;
+                    enableEditButtons();
                     return;
                 case 11:
                     KAnim_React_Group.Visible = true;
@@ -518,6 +523,7 @@ namespace CustomStreamMaker
                     PlayMusic_Group.Visible = false;
                     BorderEffect_Group.Visible = false;
                     VisualEffect_Group.Visible = true;
+                    enableEditButtons();
                     return;
                 default:
                     KAnim_React_Group.Visible = false;
@@ -531,6 +537,16 @@ namespace CustomStreamMaker
             PlayMusic_Group.Visible = false;
             BorderEffect_Group.Visible = false;
             VisualEffect_Group.Visible = false;
+            if (PlayingType_List.SelectedIndex == 11) return;
+           
+
+            void enableEditButtons()
+            {
+                InsertAbove_Button.Enabled = true;
+                InsertBelow_Button.Enabled = true;
+                AddSaveToPlayingList_Button.Enabled = true;
+            }
+
         }
 
         private void PlayingType_List_SelectedIndexChanged(object sender, EventArgs e)
@@ -984,6 +1000,14 @@ namespace CustomStreamMaker
             {
                 InsertAbove_Button.Visible = true;
                 InsertBelow_Button.Visible = true;
+                if (PlayingType_List.SelectedIndex == 11)
+                    CheckIfReactionAnimExists();
+                else
+                {
+                    InsertAbove_Button.Enabled = true;
+                    InsertBelow_Button.Enabled = true;
+                    AddSaveToPlayingList_Button.Enabled = true;
+                }
                 AddSaveToPlayingList_Button.Text = "Save To Playing List";
             }
             else
@@ -992,6 +1016,12 @@ namespace CustomStreamMaker
                 InsertBelow_Button.Visible = false;
                 if (PlayingType_List.SelectedIndex == 11)
                     CheckIfReactionAnimExists();
+                else
+                {
+                    InsertAbove_Button.Enabled = true;
+                    InsertBelow_Button.Enabled = true;
+                    AddSaveToPlayingList_Button.Enabled = true;
+                }
                 AddSaveToPlayingList_Button.Text = "Add To Playing List";
             }
         }
