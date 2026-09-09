@@ -54,6 +54,18 @@ namespace CustomStreamMaker
 
         public bool hasDarkInterface = false;
 
+
+        // tweet stuff
+
+        public bool hasKTweet = false;
+        public bool hasATweet = false;
+        public string kTweet = "";
+        public string kPic = "";
+        public string aPic = "";
+        public string aTweet = "";
+
+        public string tweetReps = null;
+
         public StreamSettings() { }
     }
 }

@@ -36,6 +36,15 @@ namespace CustomStreamMaker
             else CustomEndScreen_Text.Text = "";
             GameChair_Checked.Checked = editor.settings.HasChair;
             DarkStream_Check.Checked = editor.settings.hasDarkInterface;
+            KTweet_Check.Checked = editor.settings.hasKTweet;
+            KTweet_Text.Text = editor.settings.kTweet;
+            KPic_Text.Text = editor.settings.kPic;
+            TweetRep_Text.Text = editor.settings.tweetReps;
+            ATweet_Check.Checked = editor.settings.hasATweet;
+            ATweet_Text.Text = editor.settings.aTweet;
+            APic_Text.Text = editor.settings.aPic;
+            Toggle_ATweet();
+            Toggle_KTweet();
         }
 
         private void HasIntro_Check_CheckedChanged(object sender, EventArgs e)
@@ -189,6 +198,97 @@ namespace CustomStreamMaker
             HasCustomEndScreen_Check.Enabled = HasEndScreen_Check.Enabled;
             CustomEndScreen_Text.Enabled = HasCustomEndScreen_Check.Enabled;
             OpenEndScreenImg_Button.Enabled = HasCustomEndScreen_Check.Enabled;
+        }
+
+        private void Toggle_KTweet()
+        {
+            KTweet_Text.Enabled = KTweet_Check.Checked;
+            KPic_Text.Enabled = KTweet_Check.Checked;
+            KPic_Button.Enabled = KTweet_Check.Checked;
+            TweetRep_Text.Enabled = KTweet_Check.Checked;
+            editor.settings.hasKTweet = KTweet_Check.Checked;
+        }
+
+        private void Toggle_ATweet()
+        {
+            ATweet_Text.Enabled = ATweet_Check.Checked;
+            APic_Text.Enabled = ATweet_Check.Checked;
+            APic_Button.Enabled = ATweet_Check.Checked;
+            editor.settings.hasATweet = ATweet_Check.Checked;
+        }
+        private void KTweet_Check_CheckedChanged(object sender, EventArgs e)
+        {
+            Toggle_KTweet();
+        }
+
+        private void KTweet_Text_TextChanged(object sender, EventArgs e)
+        {
+            editor.settings.kTweet = KTweet_Text.Text;
+        }
+
+        private void KPic_Text_TextChanged(object sender, EventArgs e)
+        {
+            editor.settings.kPic = KPic_Text.Text;
+        }
+
+        private void KPic_Button_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog openNsoStream = new OpenFileDialog();
+            openNsoStream.InitialDirectory = string.IsNullOrEmpty(Properties.Settings.Default.EndScreenDirectory) ? Environment.GetFolderPath(Environment.SpecialFolder.MyPictures) : Properties.Settings.Default.EndScreenDirectory;
+            openNsoStream.Filter = "png File (*.png)|*.png|jpg File (*.jpg)|*.jpg";
+            openNsoStream.FilterIndex = 1;
+            openNsoStream.RestoreDirectory = true;
+            if (openNsoStream.ShowDialog() == DialogResult.OK)
+            {
+                Properties.Settings.Default.EndScreenDirectory = Path.GetDirectoryName(openNsoStream.FileName);
+                if (!CustomAssetExtractor.CheckIfImageFileExists(openNsoStream.FileName, out var message))
+                {
+                    MessageBox.Show(message, "Could not load image file", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+                KPic_Text.Text = openNsoStream.FileName;
+                editor.settings.kPic = KPic_Text.Text;
+            }
+        }
+
+        private void TweetRep_Text_TextChanged(object sender, EventArgs e)
+        {
+            editor.settings.tweetReps = TweetRep_Text.Text;
+        }
+
+        private void ATweet_Check_CheckedChanged(object sender, EventArgs e)
+        {
+            Toggle_ATweet();
+        }
+
+        private void ATweet_Text_TextChanged(object sender, EventArgs e)
+        {
+            editor.settings.aTweet = ATweet_Text.Text;
+        }
+
+        private void APic_Text_TextChanged(object sender, EventArgs e)
+        {
+           editor.settings.aPic = APic_Text.Text;
+        }
+
+        private void APic_Button_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog openNsoStream = new OpenFileDialog();
+            openNsoStream.InitialDirectory = string.IsNullOrEmpty(Properties.Settings.Default.EndScreenDirectory) ? Environment.GetFolderPath(Environment.SpecialFolder.MyPictures) : Properties.Settings.Default.EndScreenDirectory;
+            openNsoStream.Filter = "png File (*.png)|*.png|jpg File (*.jpg)|*.jpg";
+            openNsoStream.FilterIndex = 1;
+            openNsoStream.RestoreDirectory = true;
+            if (openNsoStream.ShowDialog() == DialogResult.OK)
+            {
+                Properties.Settings.Default.EndScreenDirectory = Path.GetDirectoryName(openNsoStream.FileName);
+                if (!CustomAssetExtractor.CheckIfImageFileExists(openNsoStream.FileName, out var message))
+                {
+                    MessageBox.Show(message, "Could not load image file", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+                APic_Text.Text = openNsoStream.FileName;
+                editor.settings.aPic = APic_Text.Text;
+            }
         }
     }
 }

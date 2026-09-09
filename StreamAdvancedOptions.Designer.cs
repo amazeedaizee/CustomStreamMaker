@@ -49,6 +49,22 @@
             this.Chair_Group = new System.Windows.Forms.GroupBox();
             this.label1 = new System.Windows.Forms.Label();
             this.GameChair_Checked = new System.Windows.Forms.CheckBox();
+            this.Aftertweet_Group = new System.Windows.Forms.GroupBox();
+            this.KTweet_Group = new System.Windows.Forms.GroupBox();
+            this.KTweet_Check = new System.Windows.Forms.CheckBox();
+            this.KTweet_Text = new System.Windows.Forms.TextBox();
+            this.KPic_Button = new System.Windows.Forms.Button();
+            this.KPic_Text = new System.Windows.Forms.TextBox();
+            this.ATweet_Group = new System.Windows.Forms.GroupBox();
+            this.APic_Button = new System.Windows.Forms.Button();
+            this.APic_Text = new System.Windows.Forms.TextBox();
+            this.ATweet_Text = new System.Windows.Forms.TextBox();
+            this.ATweet_Check = new System.Windows.Forms.CheckBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.TweetRep_Group = new System.Windows.Forms.GroupBox();
+            this.TweetRep_Text = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
             this.StreamIntro_Group.SuspendLayout();
             this.StreamInterface_Group.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.CustomDay_Numeric)).BeginInit();
@@ -56,6 +72,10 @@
             this.GameBorders_Group.SuspendLayout();
             this.StreamEnd_Group.SuspendLayout();
             this.Chair_Group.SuspendLayout();
+            this.Aftertweet_Group.SuspendLayout();
+            this.KTweet_Group.SuspendLayout();
+            this.ATweet_Group.SuspendLayout();
+            this.TweetRep_Group.SuspendLayout();
             this.SuspendLayout();
             // 
             // StreamIntro_Group
@@ -223,7 +243,7 @@
             // 
             // OpenEndScreenImg_Button
             // 
-            this.OpenEndScreenImg_Button.Location = new System.Drawing.Point(9, 69);
+            this.OpenEndScreenImg_Button.Location = new System.Drawing.Point(239, 69);
             this.OpenEndScreenImg_Button.Name = "OpenEndScreenImg_Button";
             this.OpenEndScreenImg_Button.Size = new System.Drawing.Size(56, 23);
             this.OpenEndScreenImg_Button.TabIndex = 10;
@@ -233,7 +253,7 @@
             // 
             // CustomEndScreen_Text
             // 
-            this.CustomEndScreen_Text.Location = new System.Drawing.Point(72, 71);
+            this.CustomEndScreen_Text.Location = new System.Drawing.Point(13, 72);
             this.CustomEndScreen_Text.Name = "CustomEndScreen_Text";
             this.CustomEndScreen_Text.Size = new System.Drawing.Size(220, 20);
             this.CustomEndScreen_Text.TabIndex = 11;
@@ -298,11 +318,180 @@
             this.GameChair_Checked.UseVisualStyleBackColor = true;
             this.GameChair_Checked.CheckedChanged += new System.EventHandler(this.GameChair_Checked_CheckedChanged);
             // 
+            // Aftertweet_Group
+            // 
+            this.Aftertweet_Group.Controls.Add(this.ATweet_Group);
+            this.Aftertweet_Group.Controls.Add(this.KTweet_Group);
+            this.Aftertweet_Group.Location = new System.Drawing.Point(329, 13);
+            this.Aftertweet_Group.Name = "Aftertweet_Group";
+            this.Aftertweet_Group.Size = new System.Drawing.Size(394, 498);
+            this.Aftertweet_Group.TabIndex = 2;
+            this.Aftertweet_Group.TabStop = false;
+            this.Aftertweet_Group.Text = "Aftertweet";
+            // 
+            // KTweet_Group
+            // 
+            this.KTweet_Group.Controls.Add(this.TweetRep_Group);
+            this.KTweet_Group.Controls.Add(this.label2);
+            this.KTweet_Group.Controls.Add(this.KPic_Button);
+            this.KTweet_Group.Controls.Add(this.KPic_Text);
+            this.KTweet_Group.Controls.Add(this.KTweet_Text);
+            this.KTweet_Group.Controls.Add(this.KTweet_Check);
+            this.KTweet_Group.Location = new System.Drawing.Point(6, 22);
+            this.KTweet_Group.Name = "KTweet_Group";
+            this.KTweet_Group.Size = new System.Drawing.Size(382, 317);
+            this.KTweet_Group.TabIndex = 8;
+            this.KTweet_Group.TabStop = false;
+            this.KTweet_Group.Text = "KAngel";
+            // 
+            // KTweet_Check
+            // 
+            this.KTweet_Check.AutoSize = true;
+            this.KTweet_Check.Location = new System.Drawing.Point(6, 0);
+            this.KTweet_Check.Name = "KTweet_Check";
+            this.KTweet_Check.Size = new System.Drawing.Size(129, 17);
+            this.KTweet_Check.TabIndex = 7;
+            this.KTweet_Check.Text = "Enable KAngel Tweet";
+            this.KTweet_Check.UseVisualStyleBackColor = true;
+            this.KTweet_Check.CheckedChanged += new System.EventHandler(this.KTweet_Check_CheckedChanged);
+            // 
+            // KTweet_Text
+            // 
+            this.KTweet_Text.Location = new System.Drawing.Point(7, 24);
+            this.KTweet_Text.Multiline = true;
+            this.KTweet_Text.Name = "KTweet_Text";
+            this.KTweet_Text.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.KTweet_Text.Size = new System.Drawing.Size(369, 67);
+            this.KTweet_Text.TabIndex = 8;
+            this.KTweet_Text.TextChanged += new System.EventHandler(this.KTweet_Text_TextChanged);
+            // 
+            // KPic_Button
+            // 
+            this.KPic_Button.Location = new System.Drawing.Point(320, 100);
+            this.KPic_Button.Name = "KPic_Button";
+            this.KPic_Button.Size = new System.Drawing.Size(56, 23);
+            this.KPic_Button.TabIndex = 12;
+            this.KPic_Button.Text = "Browse";
+            this.KPic_Button.UseVisualStyleBackColor = true;
+            this.KPic_Button.Click += new System.EventHandler(this.KPic_Button_Click);
+            // 
+            // KPic_Text
+            // 
+            this.KPic_Text.Location = new System.Drawing.Point(57, 101);
+            this.KPic_Text.Name = "KPic_Text";
+            this.KPic_Text.Size = new System.Drawing.Size(256, 20);
+            this.KPic_Text.TabIndex = 13;
+            this.KPic_Text.TextChanged += new System.EventHandler(this.KPic_Text_TextChanged);
+            // 
+            // ATweet_Group
+            // 
+            this.ATweet_Group.Controls.Add(this.label3);
+            this.ATweet_Group.Controls.Add(this.APic_Button);
+            this.ATweet_Group.Controls.Add(this.APic_Text);
+            this.ATweet_Group.Controls.Add(this.ATweet_Text);
+            this.ATweet_Group.Controls.Add(this.ATweet_Check);
+            this.ATweet_Group.Location = new System.Drawing.Point(6, 348);
+            this.ATweet_Group.Name = "ATweet_Group";
+            this.ATweet_Group.Size = new System.Drawing.Size(382, 136);
+            this.ATweet_Group.TabIndex = 14;
+            this.ATweet_Group.TabStop = false;
+            this.ATweet_Group.Text = "Ame";
+            // 
+            // APic_Button
+            // 
+            this.APic_Button.Location = new System.Drawing.Point(320, 99);
+            this.APic_Button.Name = "APic_Button";
+            this.APic_Button.Size = new System.Drawing.Size(56, 23);
+            this.APic_Button.TabIndex = 12;
+            this.APic_Button.Text = "Browse";
+            this.APic_Button.UseVisualStyleBackColor = true;
+            this.APic_Button.Click += new System.EventHandler(this.APic_Button_Click);
+            // 
+            // APic_Text
+            // 
+            this.APic_Text.Location = new System.Drawing.Point(57, 100);
+            this.APic_Text.Name = "APic_Text";
+            this.APic_Text.Size = new System.Drawing.Size(256, 20);
+            this.APic_Text.TabIndex = 13;
+            this.APic_Text.TextChanged += new System.EventHandler(this.APic_Text_TextChanged);
+            // 
+            // ATweet_Text
+            // 
+            this.ATweet_Text.Location = new System.Drawing.Point(7, 24);
+            this.ATweet_Text.Multiline = true;
+            this.ATweet_Text.Name = "ATweet_Text";
+            this.ATweet_Text.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.ATweet_Text.Size = new System.Drawing.Size(369, 67);
+            this.ATweet_Text.TabIndex = 8;
+            this.ATweet_Text.TextChanged += new System.EventHandler(this.ATweet_Text_TextChanged);
+            // 
+            // ATweet_Check
+            // 
+            this.ATweet_Check.AutoSize = true;
+            this.ATweet_Check.Location = new System.Drawing.Point(6, 0);
+            this.ATweet_Check.Name = "ATweet_Check";
+            this.ATweet_Check.Size = new System.Drawing.Size(116, 17);
+            this.ATweet_Check.TabIndex = 7;
+            this.ATweet_Check.Text = "Enable Ame Tweet";
+            this.ATweet_Check.UseVisualStyleBackColor = true;
+            this.ATweet_Check.CheckedChanged += new System.EventHandler(this.ATweet_Check_CheckedChanged);
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(13, 105);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(43, 13);
+            this.label2.TabIndex = 14;
+            this.label2.Text = "Picture:";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(11, 103);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(43, 13);
+            this.label3.TabIndex = 15;
+            this.label3.Text = "Picture:";
+            // 
+            // TweetRep_Group
+            // 
+            this.TweetRep_Group.Controls.Add(this.label4);
+            this.TweetRep_Group.Controls.Add(this.TweetRep_Text);
+            this.TweetRep_Group.Location = new System.Drawing.Point(7, 133);
+            this.TweetRep_Group.Name = "TweetRep_Group";
+            this.TweetRep_Group.Size = new System.Drawing.Size(369, 178);
+            this.TweetRep_Group.TabIndex = 15;
+            this.TweetRep_Group.TabStop = false;
+            this.TweetRep_Group.Text = "Tweet Replies";
+            // 
+            // TweetRep_Text
+            // 
+            this.TweetRep_Text.Location = new System.Drawing.Point(9, 48);
+            this.TweetRep_Text.Multiline = true;
+            this.TweetRep_Text.Name = "TweetRep_Text";
+            this.TweetRep_Text.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+            this.TweetRep_Text.Size = new System.Drawing.Size(347, 116);
+            this.TweetRep_Text.TabIndex = 8;
+            this.TweetRep_Text.WordWrap = false;
+            this.TweetRep_Text.TextChanged += new System.EventHandler(this.TweetRep_Text_TextChanged);
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.label4.Location = new System.Drawing.Point(6, 22);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(219, 13);
+            this.label4.TabIndex = 8;
+            this.label4.Text = "* Use line breaks / returns to separate replies";
+            // 
             // StreamAdvancedOptions
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(330, 529);
+            this.ClientSize = new System.Drawing.Size(735, 529);
+            this.Controls.Add(this.Aftertweet_Group);
             this.Controls.Add(this.Chair_Group);
             this.Controls.Add(this.GameBorders_Group);
             this.Controls.Add(this.StreamInterface_Group);
@@ -328,6 +517,13 @@
             this.StreamEnd_Group.PerformLayout();
             this.Chair_Group.ResumeLayout(false);
             this.Chair_Group.PerformLayout();
+            this.Aftertweet_Group.ResumeLayout(false);
+            this.KTweet_Group.ResumeLayout(false);
+            this.KTweet_Group.PerformLayout();
+            this.ATweet_Group.ResumeLayout(false);
+            this.ATweet_Group.PerformLayout();
+            this.TweetRep_Group.ResumeLayout(false);
+            this.TweetRep_Group.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -354,5 +550,21 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.CheckBox GameChair_Checked;
         private System.Windows.Forms.CheckBox DarkStream_Check;
+        private System.Windows.Forms.GroupBox Aftertweet_Group;
+        private System.Windows.Forms.GroupBox KTweet_Group;
+        private System.Windows.Forms.CheckBox KTweet_Check;
+        private System.Windows.Forms.Button KPic_Button;
+        private System.Windows.Forms.TextBox KPic_Text;
+        private System.Windows.Forms.TextBox KTweet_Text;
+        private System.Windows.Forms.GroupBox ATweet_Group;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Button APic_Button;
+        private System.Windows.Forms.TextBox APic_Text;
+        private System.Windows.Forms.TextBox ATweet_Text;
+        private System.Windows.Forms.CheckBox ATweet_Check;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.GroupBox TweetRep_Group;
+        private System.Windows.Forms.TextBox TweetRep_Text;
+        private System.Windows.Forms.Label label4;
     }
 }
