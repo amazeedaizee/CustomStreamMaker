@@ -45,13 +45,14 @@ namespace CustomStreamMaker
         internal bool IsAllLoaded()
         {
             bool isAllCachedToMemory = AssetExtractor.SaveToMemory && (AssetExtractor.CachedBackgrounds.Count == 12 && AssetExtractor.CachedSprites.Count == (352 + 11) && AssetExtractor.CachedMusic.Count == 128);
+            if (!Directory.Exists(AssetExtractor.BackgroundDirectory)) return false;
             bool isAllCachedToFiles = !AssetExtractor.SaveToMemory && (Directory.GetFiles(AssetExtractor.BackgroundDirectory).Length == 12 && Directory.GetFiles(AssetExtractor.SpriteDirectory).Length == (352 + 11) && Directory.GetFiles(AssetExtractor.AudioDirectory).Length == 128);
             return isAllCachedToMemory || isAllCachedToFiles;
         }
         private void CreateNewDirectoryIfNull()
         {
             var dir = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\CustomStreamMaker";
-            if (!Directory.Exists(dir))
+            if (!Directory.Exists(dir) || !Directory.Exists(AssetExtractor.BackgroundDirectory))
             {
                 Directory.CreateDirectory(dir);
                 Directory.CreateDirectory(dir + @"\CachedBackgrounds");

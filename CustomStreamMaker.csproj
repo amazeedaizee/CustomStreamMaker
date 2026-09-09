@@ -54,8 +54,8 @@
     <ApplicationIcon>youtube.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Assembly-CSharp">
-      <HintPath>..\HelloWorld\AutoSplitter\bin\Debug\Assembly-CSharp.dll</HintPath>
+    <Reference Include="Assembly-CSharp-1_4_0">
+      <HintPath>..\ngo_assemblies_stripped\Assembly-CSharp-1_4_0.dll</HintPath>
     </Reference>
     <Reference Include="AssetRipper.TextureDecoder, Version=1.3.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>

@@ -446,13 +446,13 @@ namespace CustomStreamMaker
                     var dataLocation = tex["m_StreamData"][0].AsInt;
                     if (dataLocation == 17982288 || dataLocation == 24249328)
                         animName = "stream_ame_drag_a";
-                    if (dataLocation == 167063456 || dataLocation == 236309168 || dataLocation == 236593392)
+                    if (dataLocation == 167063456 || dataLocation == 236309168 || dataLocation == 236593392 || dataLocation == 68034752)
                         animName = "stream_ame_drag_b";
                     if (dataLocation == 78068800 || dataLocation == 78068928 || dataLocation == 78335168)
                         animName = "stream_ame_drag_c";
                     if (dataLocation == 7705732 || dataLocation == 3293888)
                         animName = "stream_ame_drag_d";
-                    if (dataLocation == 249505492 || dataLocation == 157852960 || dataLocation == 158128992)
+                    if (dataLocation == 249505492 || dataLocation == 157852960 || dataLocation == 158128992 || dataLocation == 80206688)
                         animName = "stream_ame_drag_g";
                     if (animName == "")
                         continue;
