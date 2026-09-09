@@ -53,27 +53,19 @@
   <PropertyGroup>
     <ApplicationIcon>youtube.ico</ApplicationIcon>
   </PropertyGroup>
-  <PropertyGroup>
-    <TargetZone>LocalIntranet</TargetZone>
-  </PropertyGroup>
-  <PropertyGroup>
-    <GenerateManifests>true</GenerateManifests>
-  </PropertyGroup>
-  <PropertyGroup>
-    <ApplicationManifest>Properties\app.manifest</ApplicationManifest>
-  </PropertyGroup>
   <ItemGroup>
     <Reference Include="Assembly-CSharp-1_4_0">
       <HintPath>..\ngo_assemblies_stripped\Assembly-CSharp-1_4_0.dll</HintPath>
     </Reference>
     <Reference Include="AssetRipper.TextureDecoder, Version=1.3.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>packages\AssetRipper.TextureDecoder.1.3.0\lib\netstandard2.0\AssetRipper.TextureDecoder.dll</HintPath>
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\AssetRipper.TextureDecoder.dll</HintPath>
     </Reference>
     <Reference Include="AssetsTools.NET, Version=3.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>packages\AssetsTools.NET.3.0.5\lib\net40\AssetsTools.NET.dll</HintPath>
+      <HintPath>packages\AssetsTools.NET.3.0.0\lib\net40\AssetsTools.NET.dll</HintPath>
     </Reference>
     <Reference Include="AssetsTools.NET.Texture, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>packages\AssetsTools.NET.Texture.3.0.2\lib\netstandard2.0\AssetsTools.NET.Texture.dll</HintPath>
+      <HintPath>packages\AssetsTools.NET.Texture.1.0.0\lib\netstandard2.0\AssetsTools.NET.Texture.dll</HintPath>
     </Reference>
     <Reference Include="AssetsView">
       <HintPath>ExtraLibraries\AssetsView.dll</HintPath>
@@ -377,7 +369,6 @@
       <DesignTime>True</DesignTime>
     </Compile>
     <None Include="packages.config" />
-    <None Include="Properties\app.manifest" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
